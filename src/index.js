@@ -18,6 +18,9 @@ const client = new ApolloClient({
     uri: process.env.REACT_APP_API_URI,
     credentials: 'include',
   }),
+  fetchOptions: {
+    mode: "cors"
+  },
 });
 
 ReactDOM.render(
