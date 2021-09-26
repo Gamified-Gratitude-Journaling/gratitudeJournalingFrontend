@@ -16,7 +16,6 @@ const client = new ApolloClient({
   // Create Apollo Link capable of handling file uploads
   link: createUploadLink({
     uri: process.env.REACT_APP_API_URI,
-    //credentials: 'include',
   }),
   fetchOptions: {
     mode: "cors"
