@@ -8,6 +8,7 @@ import {
 } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
 
+import './index.css';
 import App from './App';
 
 const client = new ApolloClient({

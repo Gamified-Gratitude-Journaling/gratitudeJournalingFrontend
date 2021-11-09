@@ -1,31 +1,19 @@
 import React from 'react';
-
-import UploadBlob from './components/UploadBlob';
-import UploadFile from './components/UploadFile';
-import UploadFileList from './components/UploadFileList';
-import Uploads from './components/Uploads';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import MainPage from './pages/MainPage';
 
 // Render each example Component with an appropriate header
 const app = () => {
   return (
-    <React.Fragment>
-      <div>
-        <h1>Upload File</h1>
-        <UploadFile />
+    <BrowserRouter>
+      <div class="flex justify-center">
+        <div class="max-w-7xl">
+          <Routes>
+            <Route path="/" element={<MainPage />} />
+          </Routes>
+        </div>
       </div>
-      <div>
-        <h1>Upload FileList</h1>
-        <UploadFileList />
-      </div>
-      <div>
-        <h1>Upload Blob</h1>
-        <UploadBlob />
-      </div>
-      <div>
-        <h1>Uploads</h1>
-        <Uploads />
-      </div>
-    </React.Fragment>
+    </BrowserRouter>
   );
 }
 
