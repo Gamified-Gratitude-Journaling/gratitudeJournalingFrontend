@@ -7,17 +7,29 @@ import {
   InMemoryCache
 } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
+import { setContext } from '@apollo/client/link/context';
 
 import './index.css';
 import App from './App';
 
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = sessionStorage.getItem('token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : "",
+    }
+  }
+});
+
 const client = new ApolloClient({
   cache: new InMemoryCache({}),
   ssrMode: typeof window === 'undefined',
-  // Create Apollo Link capable of handling file uploads
-  link: createUploadLink({
+  link: authLink.concat(createUploadLink({
     uri: process.env.REACT_APP_API_URI,
-  }),
+  })),
   fetchOptions: {
     mode: "cors"
   },

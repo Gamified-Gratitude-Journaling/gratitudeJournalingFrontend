@@ -12,7 +12,7 @@ const JournalEditor = ({initialMessage, onContentChange}) => {
 	const [contentState, setContentState] = useState(convertFromRaw(content));
 	return (<div>
 		<Editor
-			editorClassName="border-2 max-h-80 h-52 overflow-auto"
+			editorClassName="border-2 max-h-80 min-h-full overflow-auto"
 			onContentStateChange={debounce((state) => {
 				if (onContentChange) onContentChange(JSON.stringify(state, null, 4))
 				setContentState(state)
