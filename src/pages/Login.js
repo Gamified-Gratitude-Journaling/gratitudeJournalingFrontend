@@ -50,11 +50,10 @@ export default function Login() {
 				return await submitHandler(event);
 			}
 			//const {loading, error, data} = useQuery(LOGIN_QUERY);
-			const data = await apolloClient.query({
+			const data = (await apolloClient.query({
 				query: LOGIN_QUERY,
 				variables: { email, password }
-			})
-			console.log(data);
+			})).data;
 			if (data.login.token) {
 				context.login(
 					data.login.token,

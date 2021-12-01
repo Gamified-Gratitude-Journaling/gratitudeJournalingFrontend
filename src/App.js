@@ -9,6 +9,7 @@ import AuthContext from './context/auth-context';
 function RequireAuth({ children }) {
   const location = useLocation();
   const auth = useContext(AuthContext);
+  console.log(auth.token);
   if (!auth.token) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
