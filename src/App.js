@@ -44,7 +44,7 @@ export default function App() {
           logout: logout,
         }}
       >
-        <div class="flex justify-center">
+        <div>
           <Routes>
             <Route path="/" element={<Navigate to="/MainPage"/>} />
             <Route path="/Login" element={<Login />} />

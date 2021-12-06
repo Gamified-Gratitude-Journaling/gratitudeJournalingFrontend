@@ -2,6 +2,8 @@ import React, { useState, useContext } from 'react';
 import { useApolloClient, gql, useMutation, useQuery, } from '@apollo/client';
 import { useLocation, useNavigate } from 'react-router-dom';
 import authContext from '../context/auth-context';
+import logo from '../gratitude symbol.png';
+import '../index.css';
 
 const CREATE_USER_MUTATION = gql`
 	mutation CreateUser($email: String!, $password: String!) {
@@ -70,22 +72,57 @@ export default function Login() {
 	};
 
 	return (
-		<div>
-			<p>You must log in to view the page at {from}</p>
-			<form className="auth-form" onSubmit={submitHandler}>
-				<div className="form-control">
-					<label htmlFor="email">E-mail</label>
-					<input type="email" id="email" ref={emailEl} />
-				</div>
-				<div className="form-control">
-					<label htmlFor="password">Password</label>
-					<input type="password" id="password" ref={passwordEl} />
-				</div>
-				<div className="form-actions">
-					<button type="submit">Submit</button>
-					<button type="button" onClick={switchModeHandler}>Switch to {isLogin ? 'Signup' : 'Login'}</button>
-				</div>
-			</form>
+		// <div>
+		// 	<p className = 'text-center'>You must log in to view the page at {from}</p>
+		// 	<form className="auth-form" onSubmit={submitHandler}>
+		// 		<div className="form-control">
+		// 			<label htmlFor="email">E-mail </label>
+		// 			<input type="email" id="email" ref={emailEl} />
+		// 		</div>
+		// 		<div className="form-control">
+		// 			<label htmlFor="password">Password </label>
+		// 			<input type="password" id="password" ref={passwordEl} />
+		// 		</div>
+		// 		<div className="form-actions">
+		// 			<button type="submit">Submit </button>
+		// 			<button type="button" onClick={switchModeHandler}> Switch to {isLogin ? 'Signup' : 'Login'}</button>
+		// 		</div>
+		// 	</form>
+		// </div>
+
+		<div className = 'container'>
+			{/* <p className = 'text-center'>You must log in to view the page at {from}</p> */}
+			<div>
+				<img className = 'logo'  src={logo} alt = "logo" />
+
+			</div>
+
+			<div className = 'arrangeRight'>
+				
+				<p className = 'title'> Gratitude Journal </p>
+			
+				
+				<form className = 'form-arrange' onSubmit={submitHandler}>
+					<div>
+						<input className = 'login' placeholder = 'Email' type = 'email' id = 'email' ref = {emailEl}/>
+					</div>
+
+					<div>
+						<input className = 'login' placeholder = 'Password' type="password" id="password" ref={passwordEl} />
+					</div>
+					
+					<a className = 'text-center' href = 'www.google.com'> <u> Forgot Password? </u> </a>
+					
+
+					<button  className = 'text-white bg-black' type = 'submit'>Sign In</button>
+					<button  classname = 'bg-white' type = 'submit'> New User? Register! </button>
+
+				
+				</form>
+				
+				
+			</div>
+			
 		</div>
 	);
 }

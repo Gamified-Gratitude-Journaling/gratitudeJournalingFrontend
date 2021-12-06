@@ -1,3 +1,69 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.logo{
+    max-width: 100%;
+    margin-top: 100px;
+
+    margin-left: 150px;
+    background-color: gray;
+
+}
+
+.title{
+    /* margin-left: 162px; */
+    /* margin-top: 234px; */
+    /* margin: auto; */
+    align-self: start;
+
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 72px;
+    line-height: 88px;
+    text-align: center;
+
+    color: #000000;
+}
+
+.container{
+    margin-top: 100px;
+    display:grid;
+    grid-template-columns: 30% 70%;
+    grid-auto-rows: auto;
+    grid-gap: 150px;
+
+}
+
+input{
+    align-self: start;
+    border: 3px solid black;
+    border-radius: 170px;
+    padding: 30px;
+}
+
+.login{
+    width: 500px;
+    height: 70px;
+}
+
+.arrangeRight{
+    display: grid;
+    grid-template-rows: 30% 30% 30%;
+}
+
+.form-arrange{
+    display: grid;
+    grid-template-rows: 50% 50%;
+    grid-gap: 30px;
+    justify-content: center;
+}
+
+button{
+    border: 3px solid black;
+    border-radius: 170px;
+    padding: 20px;
+    justify-content: center;
+    /* background-color: black; */
+}
