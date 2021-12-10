@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useApolloClient, gql, useMutation, useQuery, } from '@apollo/client';
 import { useLocation, useNavigate } from 'react-router-dom';
 import authContext from '../context/auth-context';
-import logo from '../gratitude symbol.png';
+import logo from './images/gratitude symbol.png';
 import '../index.css';
 
 const CREATE_USER_MUTATION = gql`

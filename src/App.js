@@ -49,6 +49,7 @@ export default function App() {
             <Route path="/" element={<Navigate to="/MainPage"/>} />
             <Route path="/Login" element={<Login />} />
             <Route path="/MainPage" element={<RequireAuth><MainPage /></RequireAuth>} />
+            {/* <Route path="/MainPage" element={<MainPage />} /> */}
           </Routes>
         </div>
       </AuthContext.Provider>

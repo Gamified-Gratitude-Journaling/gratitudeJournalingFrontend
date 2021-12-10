@@ -67,3 +67,64 @@ button{
     justify-content: center;
     /* background-color: black; */
 }
+
+ 
+li, a, p{
+    font-family: Montserrat;
+
+}
+
+._logoNav{
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+
+header{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 10%;
+    -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+}
+
+.player-scores{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 5%;
+}
+
+.player-score-box{
+    border: 3px solid black;
+    border-radius: 170px;
+    margin: 50px;
+}
+
+nav{
+    display: inline-block;
+    
+}
+
+.nav_links{
+    list-style: none;
+}
+
+.nav_links li{
+    display: inline-block;
+    padding: 0px 40px;
+    align-items: center;
+}
+
+.nav_links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+    color: #0088a9;
+}
+
+
