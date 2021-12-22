@@ -24,7 +24,6 @@ const LOGIN_QUERY = gql`
 `;
 
 export default function Login() {
-	const [isLogin, setIsLogin] = useState(true);
 	const context = useContext(authContext);
 	const navigate = useNavigate();
 	const location = useLocation();
@@ -34,11 +33,7 @@ export default function Login() {
 	const emailEl = React.createRef();
 	const passwordEl = React.createRef();
 
-	const switchModeHandler = () => {
-		setIsLogin(!isLogin);
-	};
-
-	const submitHandler = async (event) => {
+	const registerHandler = async (event) => {
 		event.preventDefault();
 		const email = emailEl.current.value;
 		const password = passwordEl.current.value;
@@ -46,12 +41,22 @@ export default function Login() {
 		if (email.trim().length === 0 || password.trim().length === 0) { return; }
 
 		try {
-			if (!isLogin) {
-				setIsLogin(true);
-				await createUserMutation({ variables: { email, password } });
-				return await submitHandler(event);
-			}
-			//const {loading, error, data} = useQuery(LOGIN_QUERY);
+			await createUserMutation({ variables: { email, password } });
+			return await loginHandler(event, email, password);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const loginHandler = async (event, email, password) => {
+		event.preventDefault();
+		console.log(event);
+		if (!email) email = emailEl.current.value;
+		if (!password) password = passwordEl.current.value;
+
+		if (email.trim().length === 0 || password.trim().length === 0) { return; }
+
+		try {
 			const data = (await apolloClient.query({
 				query: LOGIN_QUERY,
 				variables: { email, password }
@@ -102,7 +107,7 @@ export default function Login() {
 				<p className = 'title'> Gratitude Journal </p>
 			
 				
-				<form className = 'form-arrange' onSubmit={submitHandler}>
+				<form className = 'form-arrange'>
 					<div>
 						<input className = 'login' placeholder = 'Email' type = 'email' id = 'email' ref = {emailEl}/>
 					</div>
@@ -114,8 +119,8 @@ export default function Login() {
 					<a className = 'text-center' href = 'www.google.com'> <u> Forgot Password? </u> </a>
 					
 
-					<button  className = 'text-white bg-black' type = 'submit'>Sign In</button>
-					<button  classname = 'bg-white' type = 'submit'> New User? Register! </button>
+					<button  className = 'text-white bg-black' onClick={loginHandler}>Sign In</button>
+					<button  classname = 'bg-white' onClick={registerHandler}> New User? Register! </button>
 
 				
 				</form>
