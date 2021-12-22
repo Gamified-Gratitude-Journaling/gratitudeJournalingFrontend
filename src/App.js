@@ -4,6 +4,7 @@ import { useApolloClient } from '@apollo/client';
 
 import MainPage from './pages/MainPage';
 import Login from './pages/Login';
+import Test from './pages/Test';
 import AuthContext from './context/auth-context';
 
 function RequireAuth({ children }) {
@@ -49,6 +50,7 @@ export default function App() {
             <Route path="/" element={<Navigate to="/MainPage"/>} />
             <Route path="/Login" element={<Login />} />
             <Route path="/MainPage" element={<RequireAuth><MainPage /></RequireAuth>} />
+            <Route path="/Test" element={<Test />} />
             {/* <Route path="/MainPage" element={<MainPage />} /> */}
           </Routes>
         </div>
