@@ -5,6 +5,7 @@ const features = {
 	MONGO_DB: "GJ",
 	clientPassword: null,
 	clientEmail: null,
+	BACKEND_URI: "https://vast-dawn-11590.herokuapp.com/graphql"
 };
 
 module.exports = {
