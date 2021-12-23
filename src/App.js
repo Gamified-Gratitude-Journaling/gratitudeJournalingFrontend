@@ -4,6 +4,7 @@ import { useApolloClient } from '@apollo/client';
 
 import MainPage from './pages/MainPage';
 import Login from './pages/Login';
+import NavBar from './components/NavBar';
 import AuthContext from './context/auth-context';
 const Test = React.lazy(() => import('./pages/Test'));
 
@@ -45,20 +46,19 @@ export default function App() {
           logout: logout,
         }}
       >
-        <div>
-          <Routes>
-            <Route path="/" element={<Navigate to="/MainPage" />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/MainPage" element={<RequireAuth><MainPage /></RequireAuth>} />
-            {process.env.NODE_ENV !== 'production' && (
-              <Route path="/Test" element={
-                <Suspense fallback={<p>loading...</p>}>
-                  <Test />
-                </Suspense>
-              } />
-            )}
-          </Routes>
-        </div>
+        <NavBar />
+        <Routes>
+          <Route path="/Login" element={<Login />} />
+          <Route path="/MainPage" element={<RequireAuth><MainPage /></RequireAuth>} />
+          {process.env.NODE_ENV !== 'production' && (
+            <Route path="/Test" element={
+              <Suspense fallback={<p>loading...</p>}>
+                <Test />
+              </Suspense>
+            } />
+          )}
+          <Route path="*" element={<Navigate to="/MainPage" />} />
+        </Routes>
       </AuthContext.Provider>
     </HashRouter>
   );
