@@ -6,7 +6,7 @@ import user from '../pages/images/user.png';
 const NavBar = () => {
     return (
         <div>
-            <header>
+            {/* <header>
             
             <a href = '#' className = '_logoNav'> 
                     <img src = {logo} width = {37} height = {39} alt = ' '/>
@@ -25,15 +25,31 @@ const NavBar = () => {
                     
                 </ul>
 
-            </nav>
+            </nav> */}
 
             {/* <a href = '#'><image source = {user} alt = ''/></a> */}
-            <a href = '#'><img src = {user} width = {37} height = {39} alt = ' '/></a>
+            {/* <a href = '#'><img src = {user} width = {37} height = {39} alt = ' '/></a> */}
+        
+            {/* </header> */}
+            
+            <nav class = 'navBar'>
+                <a href = '#' className="._logoNav">
+                    <img src = {logo} width = {37} height = {39} alt = ' '/>
+        
+                </a>
 
-            </header>
-            
-            
+                <ul className = 'nav_links'>
+                    <li><a href = '#'>Journal</a></li>
+                    <li><a href = '#'>Awards</a></li>
+                    <li><a href = '#'>Surveys</a></li>
+                    
+                </ul>
+
+            </nav>
         </div>
+        
+       
+            
         
         
     )

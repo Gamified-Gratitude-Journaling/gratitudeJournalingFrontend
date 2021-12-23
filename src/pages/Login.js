@@ -97,7 +97,7 @@ export default function Login() {
 
 		<div className = 'container'>
 			{/* <p className = 'text-center'>You must log in to view the page at {from}</p> */}
-			<div>
+			{/* <div>
 				<img className = 'logo'  src={logo} alt = "logo" />
 
 			</div>
@@ -126,8 +126,45 @@ export default function Login() {
 				</form>
 				
 				
-			</div>
+			</div> */}
 			
+			<div className = 'row py-5'>
+
+				<div className = 'col-lg-5'>
+					<img className = 'logo img-fluid m-auto' src = {logo} alt='logo' class = 'responsive'/>
+
+				</div>
+
+				<div className = 'col-lg-7'>
+
+					<form className = 'form grid gap-3'>
+						<h1 className='text-center title'> Gratitude Journal</h1>
+
+						<div className = 'text-center'>
+							<input className = 'login' placeholder = 'Email' type = 'email' id = 'email' ref = {emailEl}/>
+						</div>
+
+						<div className = 'text-center'>
+							<input className = 'login' placeholder = 'Password' type="password" id="password" ref={passwordEl} />
+					
+						</div>
+						
+						<a className = 'text-center' href = 'www.google.com'> <u> Forgot Password? </u> </a>
+						
+						
+						<button className = 'text-white bg-black' onClick={loginHandler}>Sign In</button>
+
+						<button  onClick={registerHandler}> New User? Register! </button>
+
+						
+
+						
+					</form>
+					
+				</div>
+				
+
+			</div>
 		</div>
 	);
 }

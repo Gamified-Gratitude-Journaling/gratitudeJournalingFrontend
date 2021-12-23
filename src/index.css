@@ -2,73 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-.logo{
-    max-width: 100%;
-    margin-top: 100px;
-
-    margin-left: 150px;
-    background-color: gray;
-
-}
 
 .title{
-    /* margin-left: 162px; */
-    /* margin-top: 234px; */
-    /* margin: auto; */
-    align-self: start;
-
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 72px;
-    line-height: 88px;
-    text-align: center;
-
-    color: #000000;
+    font-family: 'Montserrat';
+    font-size: clamp(40px, 5vw, 60px);
 }
-
-.container{
-    margin-top: 100px;
-    display:grid;
-    grid-template-columns: 30% 70%;
-    grid-auto-rows: auto;
-    grid-gap: 150px;
-
-}
-
-input{
-    align-self: start;
+button{
+    width: 50%;
     border: 3px solid black;
     border-radius: 170px;
-    padding: 30px;
+    margin:auto;
+}
+
+.logo{
+     width:50%;
+     height: auto;
 }
 
 .login{
-    width: 500px;
-    height: 70px;
-}
-
-.arrangeRight{
-    display: grid;
-    grid-template-rows: 30% 30% 30%;
-}
-
-.form-arrange{
-    display: grid;
-    grid-template-rows: 50% 50%;
-    grid-gap: 30px;
-    justify-content: center;
-}
-
-button{
-    border: 3px solid black;
+    width: 60%;
     border-radius: 170px;
-    padding: 20px;
-    justify-content: center;
-    /* background-color: black; */
+    border: 3px solid black;
+    padding: 5px 20px;
 }
 
- 
 li, a, p{
     font-family: Montserrat;
 
@@ -77,15 +34,17 @@ li, a, p{
 ._logoNav{
     display: flex;
     align-items: center;
+    justify-content: space-around;
     margin-right: auto;
+    min-width: fit-content;
 }
 
 
-header{
+.navBar{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-around;
     align-items: center;
-    padding: 30px 10%;
+    padding: 20px 5%;
     -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
@@ -126,5 +85,4 @@ nav{
 .nav_links li a:hover {
     color: #0088a9;
 }
-
 
