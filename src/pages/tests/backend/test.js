@@ -1,5 +1,5 @@
 
-const reset = require('./resetDatabase');
+//const reset = require('./resetDatabase');
 const authenticate = require('./auth');
 const journal= require('./journal');
 const env = require('./env');

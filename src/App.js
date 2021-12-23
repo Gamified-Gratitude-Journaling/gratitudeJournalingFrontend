@@ -1,10 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, Suspense } from 'react';
 import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useApolloClient } from '@apollo/client';
 
 import MainPage from './pages/MainPage';
 import Login from './pages/Login';
 import AuthContext from './context/auth-context';
+const Test = React.lazy(() => import('./pages/Test'));
 
 function RequireAuth({ children }) {
   const location = useLocation();
@@ -50,9 +51,12 @@ export default function App() {
             <Route path="/Login" element={<Login />} />
             <Route path="/MainPage" element={<RequireAuth><MainPage /></RequireAuth>} />
             {process.env.NODE_ENV !== 'production' && (
-              import('./pages/Test').then((Test) => {<Route path="/Test" element={<Test />} />})
+              <Route path="/Test" element={
+                <Suspense fallback={<p>loading...</p>}>
+                  <Test />
+                </Suspense>
+              } />
             )}
-            {/* <Route path="/MainPage" element={<MainPage />} /> */}
           </Routes>
         </div>
       </AuthContext.Provider>
