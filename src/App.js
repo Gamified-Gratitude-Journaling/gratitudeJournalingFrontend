@@ -1,10 +1,9 @@
 import React, { useState, useContext } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useApolloClient } from '@apollo/client';
 
 import MainPage from './pages/MainPage';
 import Login from './pages/Login';
-import Test from './pages/Test';
 import AuthContext from './context/auth-context';
 
 function RequireAuth({ children }) {
@@ -35,7 +34,7 @@ export default function App() {
   }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AuthContext.Provider
         value={{
           token: token,
@@ -47,15 +46,17 @@ export default function App() {
       >
         <div>
           <Routes>
-            <Route path="/" element={<Navigate to="/MainPage"/>} />
+            <Route path="/" element={<Navigate to="/MainPage" />} />
             <Route path="/Login" element={<Login />} />
             <Route path="/MainPage" element={<RequireAuth><MainPage /></RequireAuth>} />
-            <Route path="/Test" element={<Test />} />
+            {process.env.NODE_ENV !== 'production' && (
+              import('./pages/Test').then((Test) => {<Route path="/Test" element={<Test />} />})
+            )}
             {/* <Route path="/MainPage" element={<MainPage />} /> */}
           </Routes>
         </div>
       </AuthContext.Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
