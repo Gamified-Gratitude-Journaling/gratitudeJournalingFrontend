@@ -18,10 +18,9 @@ export default function NavBar() {
                         {!token && <NavLink to="/Login">Authenticate</NavLink>}
                         <li><NavLink to='/Awards'>Awards</NavLink></li>
                         <li><NavLink to='/Surveys'>Surveys</NavLink></li>
-                        <li><NavLink to='/Profile'>Profile</NavLink></li>
                     </ul>
                 </nav>
-                <a href='#'><img src={user} width={37} height={39} alt=' ' /></a>
+                <NavLink to='/Profile'><img src={user} width={37} height={39} alt=' ' /></NavLink>
             </header>
         </div>
     )

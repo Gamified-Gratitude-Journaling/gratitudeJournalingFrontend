@@ -127,6 +127,17 @@ nav{
     color: #0088a9;
 }
 
+h1{
+    font-size: 1.7rem;
+}
+h2 {
+    font-size: 1.4rem;
+}
+
+p{
+    font-size: 1rem;
+}
+
 body {
     background-color: rgb(236, 239, 241);
     font-family: Montserrat;

@@ -18,8 +18,15 @@ export default function Profile() {
 	apolloClient.resetStore();
 	const { loading: ploading, error: perror, data: pdata } = useQuery(POINTS_QUERY);
 
-	return (
+	let totalPoints = 0;
+	if (pdata) {
+		pdata.points.forEach(e => {
+			totalPoints += e.value;
+		});
+	}
+	console.log(totalPoints);
 
+	return (
 		<div className="grid grid-cols-1 sm:grid-cols-2 sm:space-x-8 space-y-16">
 			<div>
 				<h2 className='pl-4 mb-2'>Activity History</h2>
@@ -36,7 +43,12 @@ export default function Profile() {
 				<div className='rounded bg-white pb-2'>
 				</div>
 			</div>
-			<div className='rounded bg-gray-500 sm:col-span-2'><p>Stats</p></div>
+			<div className='sm:col-span-2'>
+				<h2 className='pl-4 mb-2'>Stats</h2>
+				<div className='grid grid-cols-3 rounded bg-white pb-2'>
+					<p>Total Points: {totalPoints}</p>
+				</div>
+			</div>
 		</div>
 	);
 }
