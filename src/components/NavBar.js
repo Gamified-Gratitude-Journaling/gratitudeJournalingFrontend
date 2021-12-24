@@ -19,6 +19,7 @@ const NavBar = () => {
 
         if(navLinkOpen){
             classes += " active";
+            document.body.style.overflow = "hidden";
         }
 
         return classes;
