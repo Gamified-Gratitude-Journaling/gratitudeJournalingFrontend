@@ -4,6 +4,7 @@ import '../index.css';
 
 import JournalEditor from '../components/JournalEditor';
 import Spinner from '../components/Spinner/Spinner';
+import { debounce } from 'lodash';
 
 const JOURNAL_ENTRY_UPLOAD_MUTATION = gql`
   mutation JournalEntryUpload($content: String!) {
@@ -25,7 +26,6 @@ const JOURNAL_ENTRY_UPLOADS = gql`
 
 export default function Journal() {
 	const apolloClient = useApolloClient();
-	apolloClient.resetStore();
 	const [journalEntryUploadMutation] = useMutation(JOURNAL_ENTRY_UPLOAD_MUTATION);
 	const { loading, error, data } = useQuery(JOURNAL_ENTRY_UPLOADS);
 
@@ -45,11 +45,9 @@ export default function Journal() {
 			<div class="border-2 max-w-7xl">
 				{loading ? <Spinner /> :
 					<JournalEditor
-						onContentChange={(content) => {
-							journalEntryUploadMutation({ variables: { content } }).then(() => {
-								//apolloClient.resetStore();
-							});
-						}}
+						onContentChange={debounce((content) => {
+							journalEntryUploadMutation({ variables: { content } }).then(apolloClient.resetStore());
+						}, 1000)}
 						initialContent={JSON.parse(initialContent)}
 					/>
 				}

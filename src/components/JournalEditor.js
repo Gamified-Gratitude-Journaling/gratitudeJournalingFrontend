@@ -18,7 +18,7 @@ const JournalEditor = ({ initialContent, onContentChange }) => {
 				console.log(state.getCurrentContent());
 				if (onContentChange) {
 					//onContentChange(this, JSON.stringify(state, null, 4));
-					debounce(onContentChange.bind(this, JSON.stringify(convertToRaw(state.getCurrentContent()), null, 4)), 1000).call();
+					onContentChange(JSON.stringify(convertToRaw(state.getCurrentContent()), null, 4));
 				}
 				setEditorState(state);
 			}}
