@@ -7,16 +7,18 @@
     font-family: 'Montserrat';
     font-size: clamp(40px, 5vw, 60px);
 }
+
 button{
-    width: 50%;
+    /* width: 40%; */
     border: 3px solid black;
     border-radius: 170px;
     margin:auto;
+    padding: 10px auto;
 }
 
 .logo{
-     width:50%;
-     height: auto;
+    width: 50%;
+    height: auto;
 }
 
 .login{
@@ -24,6 +26,7 @@ button{
     border-radius: 170px;
     border: 3px solid black;
     padding: 5px 20px;
+    
 }
 
 li, a, p{
@@ -42,12 +45,47 @@ li, a, p{
 
 .navBar{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0px 40px;
     align-items: center;
-    padding: 20px 5%;
     -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    min-height: 8vh;
+    width: 100%;
+}
+
+
+.nav_links{
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    width: 40%;
+
+}
+
+.nav_links li{
+    list-style: none;
+}
+
+.nav_links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+    color: #0088a9;
+}
+
+.burger div{
+    width: 25px;
+    height: 3px;
+    margin: 5px; 
+    background-color: black;
+}
+
+.burger{
+    display: none;
+    cursor: pointer;
 }
 
 .player-scores{
@@ -63,26 +101,47 @@ li, a, p{
     margin: 50px;
 }
 
-nav{
-    display: inline-block;
-    
+/* Break points */
+
+@media sreen and (max-width: 874px) {
+    .logo{
+        align-items: center;
+    }
 }
 
-.nav_links{
-    list-style: none;
+@media screen and (max-width: 1024px) {
+    .nav_links{
+        width: 60%;
+    }
 }
 
-.nav_links li{
-    display: inline-block;
-    padding: 0px 40px;
-    align-items: center;
+@media screen and (max-width: 768px) {
+    body{
+        overflow-x: hidden;
+    }
+
+    .nav_links{
+       position: absolute;
+       right: 0px;
+       display: flex;
+       flex-direction: column;
+       height: 92vh;
+       align-items: center;
+       width: 100%;
+       top: 8vh;
+       font-size: 32px;
+       transform: translateX(100%);
+       background-color: white;
+       transition: transform 0.5s ease-in;
+    }
+
+
+    .burger{
+        display: block;
+    }
 }
 
-.nav_links li a {
-    transition: all 0.3s ease 0s;
-}
 
-.nav_links li a:hover {
-    color: #0088a9;
+.active{
+    transform: translateX(0%);
 }
-

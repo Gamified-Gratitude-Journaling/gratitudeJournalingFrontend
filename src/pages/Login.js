@@ -83,14 +83,14 @@ export default function Login() {
 			
 			<div className = 'row py-5'>
 
-				<div className = 'col-lg-5'>
-					<img className = 'logo img-fluid m-auto' src = {logo} alt='logo' class = 'responsive'/>
+				<div className = 'col-lg-5 mx-auto'>
+					<img className = 'logo img-fluid img-responsive mx-auto' src = {logo} alt='logo' class = 'responsive'/>
 
 				</div>
 
 				<div className = 'col-lg-7'>
 
-					<form className = 'form grid gap-3'>
+					<form className = 'form grid gap-4'>
 						<h1 className='text-center title'> Gratitude Journal</h1>
 
 						<div className = 'text-center'>
@@ -105,9 +105,9 @@ export default function Login() {
 						<a className = 'text-center' href = 'www.google.com'> <u> Forgot Password? </u> </a>
 						
 						
-						<button className = 'text-white bg-black' onClick={loginHandler}>Sign In</button>
+						<button className = 'text-white bg-black w-2/5' onClick={loginHandler}>Sign In</button>
 
-						<button  onClick={registerHandler}> New User? Register! </button>
+						<button className='w-2/5' onClick={registerHandler}> New User? Register! </button>
 
 						
 

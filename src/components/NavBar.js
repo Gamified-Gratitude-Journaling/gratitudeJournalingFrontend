@@ -1,54 +1,62 @@
 import react from "react";
+import { useState } from "react";
 import '../index.css';
 import logo from '../pages/images/gratitude symbol.png';
 import user from '../pages/images/user.png';
+import hamburger from '../pages/images/hamburger.png';
+
+
 
 const NavBar = () => {
+    const [navLinkOpen, navLinkToggle] = useState(false);
+
+    const handleNavLinksToggle =() => {
+        navLinkToggle(!navLinkOpen);
+    }
+
+    const renderClass =()=> {
+        let classes = "nav_links";
+
+        if(navLinkOpen){
+            classes += " active";
+        }
+
+        return classes;
+    }
+
     return (
+
+        
         <div>
-            {/* <header>
             
-            <a href = '#' className = '_logoNav'> 
-                    <img src = {logo} width = {37} height = {39} alt = ' '/>
-
-                    <p className = 'p-2'> Gratitude Journal </p>
-
-            </a>
-        
-
-            
-            <nav>
-                <ul className = 'nav_links'>
-                    <li><a href = '#'>Journal</a></li>
-                    <li><a href = '#'>Awards</a></li>
-                    <li><a href = '#'>Surveys</a></li>
-                    
-                </ul>
-
-            </nav> */}
-
-            {/* <a href = '#'><image source = {user} alt = ''/></a> */}
-            {/* <a href = '#'><img src = {user} width = {37} height = {39} alt = ' '/></a> */}
-        
-            {/* </header> */}
             
             <nav class = 'navBar'>
+                
                 <a href = '#' className="._logoNav">
                     <img src = {logo} width = {37} height = {39} alt = ' '/>
         
                 </a>
-
-                <ul className = 'nav_links'>
+                
+                <ul className = {renderClass()}>
                     <li><a href = '#'>Journal</a></li>
                     <li><a href = '#'>Awards</a></li>
                     <li><a href = '#'>Surveys</a></li>
+                    <li><a href = '#'><img src={user}/></a></li>
                     
                 </ul>
 
+
+
+                <div onClick = {() => handleNavLinksToggle()} className = 'burger' id = 'burgerS'>
+                    <div className = 'line1'></div>
+                    <div className = 'line2'></div>
+                    <div className = 'line3'></div>
+                </div>
+
             </nav>
+
         </div>
         
-       
             
         
         
