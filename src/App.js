@@ -47,19 +47,21 @@ export default function App() {
         }}
       >
         <NavBar />
-        <Routes>
-          <Route path="/Login" element={<Login />} />
-          <Route path="/MainPage" element={<RequireAuth><MainPage /></RequireAuth>} />
-          <Route path="/Journal" element={<RequireAuth><Journal /></RequireAuth>} />
-          {process.env.NODE_ENV !== 'production' && (
-            <Route path="/Test" element={
-              <Suspense fallback={<p>loading...</p>}>
-                <Test />
-              </Suspense>
-            } />
-          )}
-          <Route path="*" element={<Navigate to="/MainPage" />} />
-        </Routes>
+        <div>
+          <Routes>
+            <Route path="/Login" element={<Login />} />
+            <Route path="/MainPage" element={<RequireAuth><MainPage /></RequireAuth>} />
+            <Route path="/Journal" element={<RequireAuth><Journal /></RequireAuth>} />
+            {process.env.NODE_ENV !== 'production' && (
+              <Route path="/Test" element={
+                <Suspense fallback={<p>loading...</p>}>
+                  <Test />
+                </Suspense>
+              } />
+            )}
+            <Route path="*" element={<Navigate to="/MainPage" />} />
+          </Routes>
+        </div>
       </AuthContext.Provider>
     </HashRouter>
   );

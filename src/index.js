@@ -28,7 +28,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache({}),
   ssrMode: typeof window === 'undefined',
   link: authLink.concat(createUploadLink({
-    uri: process.env.REACT_APP_API_URI,
+    uri: (process.env.NODE_ENV === 'production') ? process.env.PROD_REACT_APP_API_URI : process.env.REACT_APP_API_URI,
   })),
   fetchOptions: {
     mode: "cors"

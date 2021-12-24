@@ -1,22 +1,37 @@
 import React, { useState } from 'react';
-import { convertToRaw, ContentState } from 'draft-js';
+import { convertToRaw, ContentState, EditorState, convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { debounce } from 'lodash';
 
 const JournalEditor = ({ initialContent, onContentChange }) => {
-	const [contentState, setContentState] = useState(initialContent);
-	return (<div>
+	console.log(initialContent);
+	if (!initialContent) {initialContent = EditorState.createEmpty()}
+	else {initialContent = EditorState.createWithContent(convertFromRaw(initialContent))}
+	const [editorState, setEditorState] = useState(initialContent);
+	return (<React.Fragment>
 		<Editor
 			editorClassName="border-2 max-h-80 min-h-full overflow-auto"
 			defaultContentState={initialContent}
-			contentState={contentState}
-			onContentStateChange={debounce((state) => {
-				if (onContentChange) onContentChange(JSON.stringify(state, null, 4))
-				setContentState(state);
-			}, 1000)}
+			editorState={editorState}
+			onEditorStateChange={(state) => {
+				console.log(state.getCurrentContent());
+				if (onContentChange) {
+					//onContentChange(this, JSON.stringify(state, null, 4));
+					debounce(onContentChange.bind(this, JSON.stringify(convertToRaw(state.getCurrentContent()), null, 4)), 1000).call();
+				}
+				setEditorState(state);
+			}}
+			toolbar={{
+				options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'emoji', 'image', 'history'],
+				inline: { inDropdown: true },
+				list: { inDropdown: true },
+				textAlign: { inDropdown: true },
+				link: { inDropdown: true },
+				history: { inDropdown: false },
+			}}
 		/>
-	</div>);
+	</React.Fragment>);
 }
 
 export default JournalEditor;

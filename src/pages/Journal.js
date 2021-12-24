@@ -25,6 +25,7 @@ const JOURNAL_ENTRY_UPLOADS = gql`
 
 export default function Journal() {
 	const apolloClient = useApolloClient();
+	apolloClient.resetStore();
 	const [journalEntryUploadMutation] = useMutation(JOURNAL_ENTRY_UPLOAD_MUTATION);
 	const { loading, error, data } = useQuery(JOURNAL_ENTRY_UPLOADS);
 
@@ -40,13 +41,13 @@ export default function Journal() {
 	}
 
 	return (
-		<div className='container'>
+		<div>
 			<div class="border-2 max-w-7xl">
 				{loading ? <Spinner /> :
 					<JournalEditor
 						onContentChange={(content) => {
 							journalEntryUploadMutation({ variables: { content } }).then(() => {
-								apolloClient.resetStore();
+								//apolloClient.resetStore();
 							});
 						}}
 						initialContent={JSON.parse(initialContent)}
