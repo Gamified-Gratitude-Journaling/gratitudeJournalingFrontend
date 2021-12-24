@@ -94,7 +94,7 @@ export default function Login() {
 		// 	</form>
 		// </div>
 
-		<div className = 'container'>
+		<div className = 'login_container'>
 			{/* <p className = 'text-center'>You must log in to view the page at {from}</p> */}
 			<div>
 				<img className = 'logo'  src={logo} alt = "logo" />

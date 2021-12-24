@@ -7,11 +7,10 @@ import user from '../pages/images/user.png';
 export default function NavBar() {
     const token = sessionStorage.getItem('token');
     return (
-        <div>
+        <div className="bg-white">
             <header>
-                <NavLink to="/Profile" className='_logoNav'>
+                <NavLink to="/Journal" className='_logoNav'>
                     <img src={logo} width={37} height={39} alt=' ' />
-                    <p className='p-2'> Gratitude Journal </p>
                 </NavLink>
                 <nav>
                     <ul className='nav_links'>
@@ -19,7 +18,7 @@ export default function NavBar() {
                         {!token && <NavLink to="/Login">Authenticate</NavLink>}
                         <li><NavLink to='/Awards'>Awards</NavLink></li>
                         <li><NavLink to='/Surveys'>Surveys</NavLink></li>
-                        <li><NavLink to='/Stats'>Stats</NavLink></li>
+                        <li><NavLink to='/Profile'>Profile</NavLink></li>
                     </ul>
                 </nav>
                 <a href='#'><img src={user} width={37} height={39} alt=' ' /></a>

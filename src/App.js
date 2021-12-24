@@ -5,6 +5,7 @@ import { useApolloClient } from '@apollo/client';
 import MainPage from './pages/MainPage';
 import Login from './pages/Login';
 import Journal from './pages/Journal';
+import Profile from './pages/Profile';
 import NavBar from './components/NavBar';
 import AuthContext from './context/auth-context';
 const Test = React.lazy(() => import('./pages/Test'));
@@ -47,11 +48,12 @@ export default function App() {
         }}
       >
         <NavBar />
-        <div>
+        <div className="max-w-3xl mx-auto mt-6 px-2">
           <Routes>
             <Route path="/Login" element={<Login />} />
             <Route path="/MainPage" element={<RequireAuth><MainPage /></RequireAuth>} />
             <Route path="/Journal" element={<RequireAuth><Journal /></RequireAuth>} />
+            <Route path="/Profile" element={<RequireAuth><Profile /></RequireAuth>} />
             {process.env.NODE_ENV !== 'production' && (
               <Route path="/Test" element={
                 <Suspense fallback={<p>loading...</p>}>
