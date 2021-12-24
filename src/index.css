@@ -133,6 +133,8 @@ li, a, p{
        transform: translateX(100%);
        background-color: white;
        transition: transform 0.5s ease-in;
+       
+
     }
 
 
@@ -144,4 +146,5 @@ li, a, p{
 
 .active{
     transform: translateX(0%);
+    
 }

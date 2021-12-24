@@ -22,6 +22,10 @@ const NavBar = () => {
             document.body.style.overflow = "hidden";
         }
 
+        else{
+            document.body.style.overflow = "scroll";
+        }
+
         return classes;
     }
 
