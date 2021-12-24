@@ -5,9 +5,6 @@ import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { debounce } from 'lodash';
 
 const JournalEditor = ({ initialContent, onContentChange }) => {
-	if (!initialContent) {
-		initialContent = convertToRaw(ContentState.createFromText("loading..."));
-	}
 	const [contentState, setContentState] = useState(initialContent);
 	return (<div>
 		<Editor

@@ -1,14 +1,13 @@
+const { convertToRaw, ContentState } = require('draft-js');
 const helper = require('./helper');
 const env = require('./env');
 
 const genRandFromArr = (items) => {
-	return items[Math.floor(Math.random()*items.length)];
+	return items[Math.floor(Math.random() * items.length)];
 };
 
 const generateRandomJournal = () => {
-	return {
-		content: "Sample Journal Entry",
-	};
+	return "Test Sample Journal";
 };
 
 const generateRandomJournals = async (count) => {
@@ -31,11 +30,15 @@ const customStringify = (journal) => {
 	return res;
 };
 
-const createJournal = async (journal) => {
+const createJournal = async (text) => {
+	const content = JSON.stringify(convertToRaw(ContentState.createFromText(text)));
 	try {
+		const variables= {
+			content: content,
+		}
 		const queryBody =
-			`mutation {
-			journalEntryUpload (content: "${journal.content}") {
+			`mutation JournalEntryUpload ($content: String!) {
+			journalEntryUpload (content: $content) {
 				_id
 				content
 				user {
@@ -43,8 +46,7 @@ const createJournal = async (journal) => {
 				}
 			}
 		}`;
-		//console.log(queryBody);
-		return await helper.queryAPI(queryBody);
+		return await helper.queryAPI(queryBody, variables);
 	} catch (err) {
 		throw (err);
 	}
@@ -62,7 +64,7 @@ const journals = async (numJournals) => {
 		console.log("user2 fetching", await fetchJournals());
 		await helper.login(env.user1);
 		console.log("user1 fetching", await fetchJournals());
-		console.log("rewriting Journal", await createJournal({content: "Override Success"}));
+		console.log("rewriting Journal", await createJournal("Override"));
 		console.log("refetching", await fetchJournals());
 	} catch (err) { throw err; }
 };

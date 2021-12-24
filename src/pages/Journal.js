@@ -30,7 +30,7 @@ export default function Journal() {
 
 	let initialContent = "null";
 	if (data) {
-		initialContent = [""];
+		initialContent = ["", "null"];
 		data.journalEntryUploads.forEach(e => {
 			if (e.createdAt.localeCompare(initialContent[0]) > 0) {
 				initialContent = [e.createdAt, e.content];

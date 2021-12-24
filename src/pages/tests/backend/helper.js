@@ -46,7 +46,8 @@ const features = {
 
 	queryAPI: async (queryString, variables) => {
 		const requestBody = {
-			query: queryString
+			query: queryString,
+			variables: variables,
 		};
 
 		//console.log(JSON.stringify(requestBody));
