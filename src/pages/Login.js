@@ -50,7 +50,6 @@ export default function Login() {
 
 	const loginHandler = async (event, email, password) => {
 		event.preventDefault();
-		console.log(event);
 		if (!email) email = emailEl.current.value;
 		if (!password) password = passwordEl.current.value;
 

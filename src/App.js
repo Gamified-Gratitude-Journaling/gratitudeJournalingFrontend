@@ -4,6 +4,7 @@ import { useApolloClient } from '@apollo/client';
 
 import MainPage from './pages/MainPage';
 import Login from './pages/Login';
+import Journal from './pages/Journal';
 import NavBar from './components/NavBar';
 import AuthContext from './context/auth-context';
 const Test = React.lazy(() => import('./pages/Test'));
@@ -11,7 +12,6 @@ const Test = React.lazy(() => import('./pages/Test'));
 function RequireAuth({ children }) {
   const location = useLocation();
   const auth = useContext(AuthContext);
-  console.log(auth.token);
   if (!auth.token) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
@@ -50,6 +50,7 @@ export default function App() {
         <Routes>
           <Route path="/Login" element={<Login />} />
           <Route path="/MainPage" element={<RequireAuth><MainPage /></RequireAuth>} />
+          <Route path="/Journal" element={<RequireAuth><Journal /></RequireAuth>} />
           {process.env.NODE_ENV !== 'production' && (
             <Route path="/Test" element={
               <Suspense fallback={<p>loading...</p>}>

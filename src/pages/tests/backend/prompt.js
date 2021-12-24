@@ -47,6 +47,9 @@ const likePrompt = async (prompt) => {
 			content
 			user {
 				email
+				likedPrompts {
+					content
+				}
 			}
 			likes
 		}
@@ -67,7 +70,10 @@ const prompts = async () => {
 		}
 		console.log("createdPrompts", await Promise.all(createdPrompts));
 		let fetchedPrompts = [], likedPrompt = (await fetchPrompt()).data.prompt;
-		console.log("like prompt", await likePrompt(likedPrompt));
+		console.log("fail like prompt", await likePrompt(likedPrompt));
+		console.log("fail like prompt again", await likePrompt(likedPrompt));
+		console.log("login user2", await helper.login(env.user2));
+		console.log("like prompt success", await likePrompt(likedPrompt));
 		for (var i = 0; i < 100; i++) {
 			fetchedPrompts.push(fetchPrompt());
 		}

@@ -3,6 +3,7 @@
 const authenticate = require('./auth');
 const journal = require('./journal');
 const prompt = require('./prompt');
+const point = require('./point');
 const env = require('./env');
 
 env.clientEmail = "test@test.com";
@@ -16,10 +17,10 @@ class Test {
 }
 
 const tests = [
-	new Test('Authentication', authenticate),
-	new Test('Journals', journal),
+	//new Test('Authentication', authenticate),
+	//new Test('Journals', journal),
 	new Test('Prompts', prompt),
-	//new Test('Referrals', referrals),
+	//new Test('Points', point),
 ];
 
 const main = async () => {

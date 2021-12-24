@@ -8,7 +8,6 @@ import Editor from "../components/JournalEditor";
 import Calendar from "../components/Calendar";
 import { gql, useApolloClient, useMutation, useQuery } from '@apollo/client';
 // import logo from "./images/gratitude symbol.png"
-import NavBar from "../components/NavBar";
 import LeadingPlayers from "../components/LeadingPlayers";
 
 const JOURNAL_ENTRY_UPLOAD_MUTATION = gql`
@@ -42,23 +41,11 @@ export default function MainPage() {
 	// 	/>
 	// }
 	// return (<div>
-	// 	<div class="border-2 max-w-7xl">
-	// 		<Editor
-	// 			onContentChange={(content) => {
-	// 				journalEntryUploadMutation({ variables: { content } });
-	// 					/*
-	// 				journalEntryUploadMutation({ variables: { content } }).then(() => {
-	// 					apolloClient.resetStore();
-	// 				});*/
-	// 			}}
-	// 		/>
-	// 	</div>
 	// 	{calendarHeatMap}
 	// </div>)
 
 	return (
 		<div>
-			<NavBar/>
 			<div className='text-center p-5'>
 				<h1 style = {{fontSize: '48px', fontFamily:'Montserrat'}}>LEADING PLAYERS</h1>
 			</div>
