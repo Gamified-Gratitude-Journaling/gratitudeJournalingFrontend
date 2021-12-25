@@ -76,57 +76,45 @@ export default function Login() {
 	};
 
 	return (
-		// <div>
-		// 	<p className = 'text-center'>You must log in to view the page at {from}</p>
-		// 	<form className="auth-form" onSubmit={submitHandler}>
-		// 		<div className="form-control">
-		// 			<label htmlFor="email">E-mail </label>
-		// 			<input type="email" id="email" ref={emailEl} />
-		// 		</div>
-		// 		<div className="form-control">
-		// 			<label htmlFor="password">Password </label>
-		// 			<input type="password" id="password" ref={passwordEl} />
-		// 		</div>
-		// 		<div className="form-actions">
-		// 			<button type="submit">Submit </button>
-		// 			<button type="button" onClick={switchModeHandler}> Switch to {isLogin ? 'Signup' : 'Login'}</button>
-		// 		</div>
-		// 	</form>
-		// </div>
 
 		<div className = 'login_container'>
 			{/* <p className = 'text-center'>You must log in to view the page at {from}</p> */}
 			<div>
-				<img className = 'logo'  src={logo} alt = "logo" />
+				<div className = 'col-lg-5 mx-auto'>
+					<img className = 'logo img-fluid img-responsive mx-auto' src = {logo} alt='logo' class = 'responsive'/>
+
+				</div>
+
+				<div className = 'col-lg-7'>
+
+					<form className = 'form grid gap-4'>
+						<h1 className='text-center title'> Gratitude Journal</h1>
+
+						<div className = 'text-center'>
+							<input className = 'login' placeholder = 'Email' type = 'email' id = 'email' ref = {emailEl}/>
+						</div>
+
+						<div className = 'text-center'>
+							<input className = 'login' placeholder = 'Password' type="password" id="password" ref={passwordEl} />
+					
+						</div>
+						
+						<a className = 'text-center' href = 'www.google.com'> <u> Forgot Password? </u> </a>
+						
+						
+						<button className = 'text-white bg-black w-2/5' onClick={loginHandler}>Sign In</button>
+
+						<button className='w-2/5' onClick={registerHandler}> New User? Register! </button>
+
+						
+
+						
+					</form>
+					
+				</div>
+				
 
 			</div>
-
-			<div className = 'arrangeRight'>
-				
-				<p className = 'title'> Gratitude Journal </p>
-			
-				
-				<form className = 'form-arrange'>
-					<div>
-						<input className = 'login' placeholder = 'Email' type = 'email' id = 'email' ref = {emailEl}/>
-					</div>
-
-					<div>
-						<input className = 'login' placeholder = 'Password' type="password" id="password" ref={passwordEl} />
-					</div>
-					
-					<a className = 'text-center' href = 'www.google.com'> <u> Forgot Password? </u> </a>
-					
-
-					<button  className = 'text-white bg-black' onClick={loginHandler}>Sign In</button>
-					<button  classname = 'bg-white' onClick={registerHandler}> New User? Register! </button>
-
-				
-				</form>
-				
-				
-			</div>
-			
 		</div>
 	);
 }

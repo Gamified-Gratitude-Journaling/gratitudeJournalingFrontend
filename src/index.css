@@ -2,93 +2,90 @@
 @tailwind components;
 @tailwind utilities;
 
-.logo{
-    max-width: 100%;
-    margin-top: 100px;
-
-    margin-left: 150px;
-    background-color: gray;
-
-}
 
 .title{
-    /* margin-left: 162px; */
-    /* margin-top: 234px; */
-    /* margin: auto; */
-    align-self: start;
-
-    font-family: Montserrat;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 72px;
-    line-height: 88px;
-    text-align: center;
-
-    color: #000000;
-}
-
-.login_container{
-    margin-top: 100px;
-    display:grid;
-    grid-template-columns: 30% 70%;
-    grid-auto-rows: auto;
-    grid-gap: 150px;
-
-}
-
-input{
-    align-self: start;
-    border: 3px solid black;
-    border-radius: 170px;
-    padding: 30px;
-}
-
-.login{
-    width: 500px;
-    height: 70px;
-}
-
-.arrangeRight{
-    display: grid;
-    grid-template-rows: 30% 30% 30%;
-}
-
-.form-arrange{
-    display: grid;
-    grid-template-rows: 50% 50%;
-    grid-gap: 30px;
-    justify-content: center;
+    font-family: 'Montserrat';
+    font-size: clamp(40px, 5vw, 60px);
 }
 
 button{
+    /* width: 40%; */
     border: 3px solid black;
     border-radius: 170px;
-    padding: 20px;
-    justify-content: center;
-    /* background-color: black; */
+    margin:auto;
+    padding: 10px auto;
 }
 
- 
+.logo{
+    width: 50%;
+    height: auto;
+}
+
+.login{
+    width: 60%;
+    border-radius: 170px;
+    border: 3px solid black;
+    padding: 5px 20px;
+    
+}
+
 li, a, p{
-    font-family: Montserrat;
+    font-family: 'Montserrat';
 
 }
 
 ._logoNav{
     display: flex;
     align-items: center;
+    justify-content: space-around;
     margin-right: auto;
+    min-width: fit-content;
 }
 
 
-header{
+.navBar{
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    padding: 0px 40px;
     align-items: center;
-    padding: 30px 10%;
     -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    min-height: 8vh;
+    width: 100%;
+}
+
+
+.nav_links{
+    display: flex;
+    justify-content: space-around;
+    /* align-items: center; */
+    width: 40%;
+
+}
+
+.nav_links li{
+    list-style: none;
+}
+
+.nav_links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+    color: #0088a9;
+}
+
+.burger div{
+    width: 25px;
+    height: 3px;
+    margin: 5px; 
+    background-color: black;
+}
+
+.burger{
+    display: none;
+    cursor: pointer;
 }
 
 .player-scores{
@@ -104,27 +101,46 @@ header{
     margin: 50px;
 }
 
-nav{
-    display: inline-block;
-    
+/* Break points */
+
+@media sreen and (max-width: 874px) {
+    .logo{
+        align-items: center;
+    }
 }
 
-.nav_links{
-    list-style: none;
+@media screen and (max-width: 1024px) {
+    .nav_links{
+        width: 60%;
+    }
 }
 
-.nav_links li{
-    display: inline-block;
-    padding: 0px 40px;
-    align-items: center;
-}
+@media screen and (max-width: 768px) {
+    body{
+        overflow-x: hidden;
+    }
 
-.nav_links li a {
-    transition: all 0.3s ease 0s;
-}
+    .nav_links{
+       position: absolute;
+       right: 0px;
+       display: flex;
+       flex-direction: column;
+       height: 92vh;
+       align-items: center;
+       width: 100%;
+       top: 8vh;
+       font-size: 32px;
+       transform: translateX(100%);
+       background-color: white;
+       transition: transform 0.5s ease-in;
+       
 
-.nav_links li a:hover {
-    color: #0088a9;
+    }
+
+
+    .burger{
+        display: block;
+    }
 }
 
 h1{
@@ -143,3 +159,7 @@ body {
     font-family: Montserrat;
 }
 
+.active{
+    transform: translateX(0%);
+    
+}
