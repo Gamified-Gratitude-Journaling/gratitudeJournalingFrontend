@@ -5,7 +5,7 @@ const Calendar = ({ elements, rows, cols }) => {
 	return (<div className={`grid rounded content-around grid-cols-${cols} grid-rows-${rows}`}>
 		{elements.map(([dataTip, val]) => {
 			return (
-				<div className="bg-gray-200 rounded place-self-center h-4 w-4 mt-2"
+				<div key={dataTip} className="bg-gray-200 rounded place-self-center h-4 w-4 mt-2"
 					data-tip={dataTip}
 					data-html={true}
 				>

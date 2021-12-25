@@ -12,6 +12,9 @@ const POINTS_QUERY = gql`
 				createdAt
 				value
 			}
+			entries{
+				_id
+			}
 		}
   }
 `;
