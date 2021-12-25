@@ -80,7 +80,7 @@ export default function Login() {
 		<div className = 'login_container'>
 			{/* <p className = 'text-center'>You must log in to view the page at {from}</p> */}
 			<div>
-				<div className = 'col-lg-5 mx-auto'>
+				<div className = 'col-lg-5 mx-auto w-20'>
 					<img className = 'logo img-fluid img-responsive mx-auto' src = {logo} alt='logo' class = 'responsive'/>
 
 				</div>
