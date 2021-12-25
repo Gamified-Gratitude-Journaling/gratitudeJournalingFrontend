@@ -1,5 +1,5 @@
 import React, { useState, useContext, Suspense } from 'react';
-import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useApolloClient } from '@apollo/client';
 
 import Leaderboard from './pages/Leaderboard';
@@ -37,7 +37,7 @@ export default function App() {
   }
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <AuthContext.Provider
         value={{
           token: token,
@@ -53,7 +53,7 @@ export default function App() {
             <Route path="/Login" element={<Login />} />
             <Route path="/Journal" element={<RequireAuth><Journal /></RequireAuth>} />
             <Route path="/Leaderboard" element={<RequireAuth><Leaderboard /></RequireAuth>} />
-            <Route path="/Profile" element={<RequireAuth><Profile /></RequireAuth>} />
+            <Route path="/Profile/:username" element={<Profile />} />
             {process.env.NODE_ENV !== 'production' && (
               <Route path="/Test" element={
                 <Suspense fallback={<p>loading...</p>}>
@@ -65,7 +65,7 @@ export default function App() {
           </Routes>
         </div>
       </AuthContext.Provider>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 

@@ -1,46 +1,54 @@
 import React, { useEffect, useState, } from 'react';
 import { useApolloClient, gql, useMutation, useQuery, } from '@apollo/client';
-import Calendar from '../components/Calendar';
+import PointCalendar from '../components/PointCalendar';
 
 import Spinner from '../components/Spinner/Spinner';
+import { useParams } from 'react-router-dom';
 
 const POINTS_QUERY = gql`
-  query Points{
-	  	points{
-		  createdAt
-		  value
+  query Points($username: String!){
+	  	fetchUser(username: $username){
+			points {
+				createdAt
+				value
+			}
 		}
   }
 `;
 
+
 export default function Profile() {
-	const apolloClient = useApolloClient();
-	apolloClient.resetStore();
-	const { loading: ploading, error: perror, data: pdata } = useQuery(POINTS_QUERY);
+	//const apolloClient = useApolloClient();
+	//apolloClient.resetStore();
+	let {username} = useParams();
+	const { loading: ploading, error: perror, data: pdata } = useQuery(POINTS_QUERY, {variables: {username}});
+	if (perror) {
+		return <p>User not found</p>
+	}
+	const token = sessionStorage.getItem("token");
 
 	let totalPoints = 0;
 	if (pdata) {
-		pdata.points.forEach(e => {
+		pdata.fetchUser.points.forEach(e => {
 			totalPoints += e.value;
 		});
 	}
-	console.log(totalPoints);
 
 	return (
 		<div className="grid grid-cols-1 sm:grid-cols-2 sm:space-x-8 space-y-16">
-			<div className='sm:col-span-2'>
+			{token && (<div className='sm:col-span-2'>
 				<h2 className='pl-4 mb-2'>Surveys</h2>
 				<div className='grid grid-cols-3 rounded bg-white pb-2 place-content-evenly'>
 					<div className='place-self-center'>
 						<h2>To be completed:</h2>
 					</div>
 				</div>
-			</div>
+			</div>)}
 			<div>
 				<h2 className='pl-4 mb-2'>Activity History</h2>
 				<div className='rounded bg-white pb-2'>
-					{ploading ? <Spinner /> : <Calendar
-						entries={pdata.points}
+					{ploading ? <Spinner /> : <PointCalendar
+						entries={pdata.fetchUser.points}
 						rows={4}
 						cols={7}
 					/>}

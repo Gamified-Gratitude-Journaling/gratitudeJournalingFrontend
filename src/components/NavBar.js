@@ -9,6 +9,7 @@ import user from '../pages/images/user.png';
 
 export default function NavBar() {
     const token = sessionStorage.getItem('token');
+    const username = sessionStorage.getItem('username');
     const [navLinkOpen, navLinkToggle] = useState(false);
     const handleNavLinksToggle =() => {
         navLinkToggle(!navLinkOpen);
@@ -45,7 +46,7 @@ export default function NavBar() {
                 <ul className = {renderClass()}>
                     <li><NavLink to = '/Journal'>Journal</NavLink></li>
                     <li><NavLink to = '/Leaderboard'>Leaderboard</NavLink></li>
-                    <li><NavLink to = '/Profile'>
+                    <li><NavLink to = {`/Profile/${username}`}>
                         <div className="flex"><p className="pr-2">Profile</p><img src={user}/></div>
                     </NavLink></li>
                     
