@@ -89,6 +89,20 @@ const features = {
 			throw err;
 		}
 	},
+	fetchUser: async (username) => {
+		const queryBody = `
+		query {
+			fetchUser(username: "${username}") {
+				_id
+			}
+		}`;
+		try {
+			const res = await features.queryAPI(queryBody);
+			return res;
+		} catch (err) {
+			throw err;
+		}
+	},
 };
 
 module.exports = {

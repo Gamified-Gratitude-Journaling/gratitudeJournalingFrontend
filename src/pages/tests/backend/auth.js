@@ -4,11 +4,15 @@ const env = require('./env');
 env.user1 = {
 	email: "user1@test.com",
 	password: "llysc90-",
+	username: "kys",
+	userId: "61c5edd5333683fbb5f3358a",
 };
 
 env.user2 = {
 	email: "user2@test.com",
 	password: "llysc90-",
+	username: "user2",
+	userId: "61c5edd5333683fbb5f3358e",
 };
 
 env.qian = {
