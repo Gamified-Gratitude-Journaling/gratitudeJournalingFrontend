@@ -21,6 +21,7 @@ function RequireAuth({ children }) {
 
 // Render each example Component with an appropriate header
 export default function App() {
+  console.log("ok", window.location.href);
   const [token, setToken] = useState(null);
   const [userId, setUserId] = useState(null);
   const [email, setEmail] = useState(null);
@@ -36,7 +37,6 @@ export default function App() {
     client.clearStore();
   }
 
-  console.log("ok", window.location.href);
 
   return (
     <BrowserRouter>
