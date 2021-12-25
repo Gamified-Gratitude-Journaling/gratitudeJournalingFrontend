@@ -2,7 +2,7 @@ import React, { useState, useContext, Suspense } from 'react';
 import { HashRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { useApolloClient } from '@apollo/client';
 
-import MainPage from './pages/MainPage';
+import Leaderboard from './pages/Leaderboard';
 import Login from './pages/Login';
 import Journal from './pages/Journal';
 import Profile from './pages/Profile';
@@ -51,8 +51,8 @@ export default function App() {
         <div className="max-w-3xl mx-auto mt-6 px-2">
           <Routes>
             <Route path="/Login" element={<Login />} />
-            <Route path="/MainPage" element={<RequireAuth><MainPage /></RequireAuth>} />
             <Route path="/Journal" element={<RequireAuth><Journal /></RequireAuth>} />
+            <Route path="/Leaderboard" element={<RequireAuth><Leaderboard /></RequireAuth>} />
             <Route path="/Profile" element={<RequireAuth><Profile /></RequireAuth>} />
             {process.env.NODE_ENV !== 'production' && (
               <Route path="/Test" element={
@@ -61,7 +61,7 @@ export default function App() {
                 </Suspense>
               } />
             )}
-            <Route path="*" element={<Navigate to="/MainPage" />} />
+            <Route path="*" element={<Navigate to="/Journal" />} />
           </Routes>
         </div>
       </AuthContext.Provider>

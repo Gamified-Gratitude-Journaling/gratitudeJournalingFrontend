@@ -35,7 +35,7 @@ export default function NavBar() {
         <div>
             
             
-            <nav class = 'navBar'>
+            <nav className = 'navBar place-content-evenly'>
                 
                 <NavLink to = '#' className="._logoNav">
                     <img src = {logo} width = {37} height = {39} alt = ' '/>
@@ -44,9 +44,10 @@ export default function NavBar() {
                 
                 <ul className = {renderClass()}>
                     <li><NavLink to = '/Journal'>Journal</NavLink></li>
-                    <li><NavLink to = '/Awards'>Awards</NavLink></li>
-                    <li><NavLink to = '/Surveys'>Surveys</NavLink></li>
-                    <li><NavLink to = '/Profile'><img src={user}/></NavLink></li>
+                    <li><NavLink to = '/Leaderboard'>Leaderboard</NavLink></li>
+                    <li><NavLink to = '/Profile'>
+                        <div className="flex"><p className="pr-2">Profile</p><img src={user}/></div>
+                    </NavLink></li>
                     
                 </ul>
 

@@ -28,6 +28,14 @@ export default function Profile() {
 
 	return (
 		<div className="grid grid-cols-1 sm:grid-cols-2 sm:space-x-8 space-y-16">
+			<div className='sm:col-span-2'>
+				<h2 className='pl-4 mb-2'>Surveys</h2>
+				<div className='grid grid-cols-3 rounded bg-white pb-2 place-content-evenly'>
+					<div className='place-self-center'>
+						<h2>To be completed:</h2>
+					</div>
+				</div>
+			</div>
 			<div>
 				<h2 className='pl-4 mb-2'>Activity History</h2>
 				<div className='rounded bg-white pb-2'>
