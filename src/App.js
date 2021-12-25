@@ -36,6 +36,8 @@ export default function App() {
     client.clearStore();
   }
 
+  console.log("ok", window.location.href);
+
   return (
     <BrowserRouter>
       <AuthContext.Provider
@@ -47,7 +49,7 @@ export default function App() {
           logout: logout,
         }}
       >
-        <NavBar />
+        {token && <NavBar />}
         <div className="max-w-3xl mx-auto mt-6 px-2">
           <Routes>
             <Route path="/Login" element={<Login />} />

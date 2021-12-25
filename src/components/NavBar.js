@@ -10,6 +10,7 @@ import user from '../pages/images/user.png';
 export default function NavBar() {
     const token = sessionStorage.getItem('token');
     const username = sessionStorage.getItem('username');
+    console.log(sessionStorage);
     const [navLinkOpen, navLinkToggle] = useState(false);
     const handleNavLinksToggle =() => {
         navLinkToggle(!navLinkOpen);
