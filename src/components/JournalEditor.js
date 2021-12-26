@@ -28,7 +28,7 @@ export default function JournalEditor({ initialContent, onContentChange }) {
 				link: { inDropdown: true },
 				history: { inDropdown: false },
 			}}
-			toolbarClassName='z-0'
+			toolbarOnFocus
 		/>
 	</React.Fragment>);
 }

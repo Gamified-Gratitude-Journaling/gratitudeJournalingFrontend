@@ -48,21 +48,23 @@ export default function App() {
           logout: logout,
         }}
       >
-        {token && <NavBar />}
-        <div className="max-w-3xl mx-auto mt-6 px-2 z-0">
+        <div className='sticky top-0'>
+          <NavBar />
+        </div>
+        <div className="max-w-3xl mx-auto px-2 z-0 mt-6 pb-96 z-0">
           <Routes>
-            <Route path="/Login" element={<Login />} />
-            <Route path="/Journal" element={<RequireAuth><Journal /></RequireAuth>} />
-            <Route path="/Leaderboard" element={<RequireAuth><Leaderboard /></RequireAuth>} />
-            <Route path="/Profile/:username" element={<Profile />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/journal" element={<RequireAuth><Journal /></RequireAuth>} />
+            <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/profile/:username" element={<Profile />} />
             {process.env.NODE_ENV !== 'production' && (
-              <Route path="/Test" element={
+              <Route path="/test" element={
                 <Suspense fallback={<p>loading...</p>}>
                   <Test />
                 </Suspense>
               } />
             )}
-            <Route path="*" element={<Navigate to="/Journal" />} />
+            <Route path="*" element={<Navigate to="/journal" />} />
           </Routes>
         </div>
       </AuthContext.Provider>

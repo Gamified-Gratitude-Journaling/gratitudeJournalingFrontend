@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "craco build; ln -s ./ build/Profile",
+    "build": "craco build; ln -s ./ build/profile",
     "react-scriptsBuild": "react-scripts build",
     "test": "craco test",
     "eject": "react-scripts eject",
