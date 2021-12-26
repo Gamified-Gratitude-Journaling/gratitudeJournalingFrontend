@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { convertToRaw, ContentState, EditorState, convertFromRaw } from 'draft-js';
+import { convertToRaw, EditorState, convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { debounce } from 'lodash';
 
-const JournalEditor = ({ initialContent, onContentChange }) => {
+export default function JournalEditor({ initialContent, onContentChange }) {
 	console.log(initialContent);
-	if (!initialContent) {initialContent = EditorState.createEmpty()}
-	else {initialContent = EditorState.createWithContent(convertFromRaw(initialContent))}
+	if (!initialContent) { initialContent = EditorState.createEmpty() }
+	else { initialContent = EditorState.createWithContent(convertFromRaw(initialContent)) }
 	const [editorState, setEditorState] = useState(initialContent);
 	return (<React.Fragment>
 		<Editor
@@ -17,7 +16,6 @@ const JournalEditor = ({ initialContent, onContentChange }) => {
 			onEditorStateChange={(state) => {
 				console.log(state.getCurrentContent());
 				if (onContentChange) {
-					//onContentChange(this, JSON.stringify(state, null, 4));
 					onContentChange(JSON.stringify(convertToRaw(state.getCurrentContent()), null, 4));
 				}
 				setEditorState(state);
@@ -30,8 +28,8 @@ const JournalEditor = ({ initialContent, onContentChange }) => {
 				link: { inDropdown: true },
 				history: { inDropdown: false },
 			}}
+			toolbarClassName='z-0'
 		/>
 	</React.Fragment>);
 }
 
-export default JournalEditor;

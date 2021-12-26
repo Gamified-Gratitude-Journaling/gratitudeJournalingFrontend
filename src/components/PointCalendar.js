@@ -1,6 +1,6 @@
 import Calendar from "./Calendar";
 
-const PointCalendar = ({ entries, rows, cols }) => {
+export default function PointCalendar ({ entries, rows, cols }) {
 	if (!entries) return <></>
 	let elements = {}, today = (new Date()).setHours(0, 0, 0, 0);
 	const ONE_DAY = 1000 * 60 * 60 * 24;
@@ -22,5 +22,3 @@ const PointCalendar = ({ entries, rows, cols }) => {
 		cols={cols}
 	/>
 }
-
-export default PointCalendar;

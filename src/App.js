@@ -21,7 +21,6 @@ function RequireAuth({ children }) {
 
 // Render each example Component with an appropriate header
 export default function App() {
-  console.log("ok", window.location.href);
   const [token, setToken] = useState(null);
   const [userId, setUserId] = useState(null);
   const [email, setEmail] = useState(null);
@@ -50,7 +49,7 @@ export default function App() {
         }}
       >
         {token && <NavBar />}
-        <div className="max-w-3xl mx-auto mt-6 px-2">
+        <div className="max-w-3xl mx-auto mt-6 px-2 z-0">
           <Routes>
             <Route path="/Login" element={<Login />} />
             <Route path="/Journal" element={<RequireAuth><Journal /></RequireAuth>} />

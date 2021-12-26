@@ -24,7 +24,6 @@ export default function Profile() {
 	const apolloClient = useApolloClient();
 	apolloClient.resetStore();
 	let {username} = useParams();
-	console.log("Profile", username, sessionStorage);
 	const { loading: ploading, error: perror, data: pdata } = useQuery(POINTS_QUERY, {variables: {username}});
 	if (perror) {
 		return <p>User not found</p>

@@ -1,6 +1,6 @@
 import ReactToolTip from 'react-tooltip';
 
-const Calendar = ({ elements, rows, cols }) => {
+export default function Calendar({ elements, rows, cols }) {
 	//test elements = {a: 0, b: 10, c: 20, d: 30, e: 40, f: 50, g: 60};
 	return (<div className={`grid rounded content-around grid-cols-${cols} grid-rows-${rows}`}>
 		{elements.map(([dataTip, val]) => {
@@ -19,5 +19,3 @@ const Calendar = ({ elements, rows, cols }) => {
 		<ReactToolTip />
 	</div>)
 }
-
-export default Calendar;

@@ -12,19 +12,19 @@ export default function NavBar() {
     const username = sessionStorage.getItem('username');
     console.log(sessionStorage);
     const [navLinkOpen, navLinkToggle] = useState(false);
-    const handleNavLinksToggle =() => {
+    const handleNavLinksToggle = () => {
         navLinkToggle(!navLinkOpen);
     }
 
-    const renderClass =()=> {
+    const renderClass = () => {
         let classes = "nav_links";
 
-        if(navLinkOpen){
-            classes += " active";
-            document.body.style.overflow = "hidden";
+        if (navLinkOpen) {
+            classes += " active backdrop-blur-lg z-50";
+            //document.body.style.display = "none";
         }
 
-        else{
+        else {
             document.body.style.overflow = "scroll";
         }
 
@@ -33,39 +33,42 @@ export default function NavBar() {
 
     return (
 
-        
+
         <div>
-            
-            
-            <nav className = 'navBar place-content-evenly'>
-                
-                <NavLink to = '#' className="._logoNav">
-                    <img src = {logo} width = {37} height = {39} alt = ' '/>
-        
-                </NavLink>
-                
-                <ul className = {renderClass()}>
-                    <li><NavLink to = '/Journal'>Journal</NavLink></li>
-                    <li><NavLink to = '/Leaderboard'>Leaderboard</NavLink></li>
-                    <li><NavLink to = {`/Profile/${username}`}>
-                        <div className="flex"><p className="pr-2">Profile</p><img src={user}/></div>
+
+
+            <nav className='navBar place-content-around'>
+
+
+                <ul className={renderClass()}>
+                    <li><NavLink to={`/Profile/${username}`}>
+                        <div className="flex">
+                            <img src={user} />
+                            <h1 className="pl-2">Profile</h1>
+                        </div>
                     </NavLink></li>
-                    
+                    <li><NavLink to='/Journal'><h1>Journal</h1></NavLink></li>
+                    <li><NavLink to='/Leaderboard'><h1>Leaderboard</h1></NavLink></li>
+
                 </ul>
 
+                <NavLink to='#' className="._logoNav">
+                    <img src={logo} width={37} height={39} alt=' ' />
+                </NavLink>
 
 
-                <div onClick = {() => handleNavLinksToggle()} className = 'burger' id = 'burgerS'>
-                    <div className = 'line1'></div>
-                    <div className = 'line2'></div>
-                    <div className = 'line3'></div>
+
+                <div onClick={() => handleNavLinksToggle()} className='burger' id='burgerS'>
+                    <div className='line1'></div>
+                    <div className='line2'></div>
+                    <div className='line3'></div>
                 </div>
 
             </nav>
 
         </div>
-        
-            
-        
+
+
+
     )
 } 
