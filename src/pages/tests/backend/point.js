@@ -51,6 +51,12 @@ const points = async () => {
 			createdPoints.push(createPoint(i));
 		}
 		console.log("createdPoints", await Promise.all(createdPoints));
+		console.log("login user2", await helper.login(env.user2));
+		createdPoints = [];
+		for (var i = 0; i < 5; i++) {
+			createdPoints.push(createPoint(i));
+		}
+		console.log("createdPoints", await Promise.all(createdPoints));
 		console.log("fetchedPoints", (await fetchPoints()));
 	} catch (err) {
 		throw err;
