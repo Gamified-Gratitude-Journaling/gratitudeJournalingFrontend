@@ -31,7 +31,6 @@ export default function Login() {
 	const from = location.state?.from?.pathname || "/";
 	const [createUserMutation] = useMutation(CREATE_USER_MUTATION);
 	const [isLogin, setIsLogin] = useState(true);
-	console.log(isLogin);
 	const apolloClient = useApolloClient();
 	const emailEl = React.createRef();
 	const passwordEl = React.createRef();

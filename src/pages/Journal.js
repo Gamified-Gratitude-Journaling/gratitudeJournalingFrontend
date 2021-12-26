@@ -4,7 +4,8 @@ import '../index.css';
 
 import JournalEditor from '../components/JournalEditor';
 import Spinner from '../components/Spinner/Spinner';
-import { debounce } from 'lodash';
+import PromptDisplay from '../components/PromptDisplay';
+import { debounce, initial } from 'lodash';
 
 const JOURNAL_ENTRY_UPLOAD_MUTATION = gql`
   mutation JournalEntryUpload($content: String!) {
@@ -15,9 +16,9 @@ const JOURNAL_ENTRY_UPLOAD_MUTATION = gql`
   }
 `;
 
-const JOURNAL_ENTRY_UPLOADS = gql`
-  query JournalEntryUploads{
-	  journalEntryUploads{
+const CURRENT_ENTRY = gql`
+  query CurrentEntry{
+	  currentEntry{
 		  createdAt
 		  content
 		}
@@ -25,32 +26,28 @@ const JOURNAL_ENTRY_UPLOADS = gql`
 `;
 
 export default function Journal() {
-	const apolloClient = useApolloClient();
-	const [journalEntryUploadMutation] = useMutation(JOURNAL_ENTRY_UPLOAD_MUTATION);
-	const { loading, error, data } = useQuery(JOURNAL_ENTRY_UPLOADS);
-
+	const [journalEntryUploadMutation, { loading: mutateLoading }] = useMutation(JOURNAL_ENTRY_UPLOAD_MUTATION, {
+		refetchQueries: [CURRENT_ENTRY]
+	});
+	const { loading, error, data } = useQuery(CURRENT_ENTRY);
 	let initialContent = "null";
-	if (data) {
-		initialContent = ["", "null"];
-		data.journalEntryUploads.forEach(e => {
-			if (e.createdAt.localeCompare(initialContent[0]) > 0) {
-				initialContent = [e.createdAt, e.content];
-			}
-		})
-		initialContent = initialContent[1];
-	}
+	if (data && data.currentEntry) { initialContent = data.currentEntry.content; }
 
 	return (
 		<div>
+			<div>
+				<PromptDisplay />
+			</div>
 			<div class="border-2 max-w-7xl">
-				{loading ? <Spinner /> :
+				{loading ? <Spinner /> : (<div>
 					<JournalEditor
 						onContentChange={debounce((content) => {
-							journalEntryUploadMutation({ variables: { content } }).then(apolloClient.resetStore());
+							journalEntryUploadMutation({ variables: { content } });
 						}, 1000)}
 						initialContent={JSON.parse(initialContent)}
 					/>
-				}
+					<p className='text-opacity-50'>{mutateLoading ? "Saving..." : "Saved"}</p>
+				</div>)}
 			</div>
 		</div>
 	);

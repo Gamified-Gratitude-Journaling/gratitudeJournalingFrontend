@@ -4,8 +4,8 @@ import userImg from '../pages/images/user.png';
 export default function LeadingPlayer({ user, points }) {
     const currentUsername = sessionStorage.getItem("username");
     return (
-        <NavLink to={`/Profile/${user.username}`}>
-            <div className='player-score-box'>
+        <div className={`player-score-box ${ currentUsername && currentUsername.localeCompare(user.username) === 0 && "bg-blue-100" }`}>
+            <NavLink to={`/Profile/${user.username}`}>
                 <ul className='player-scores'>
                     <li>
                         <div className='_logoNav'>
@@ -15,7 +15,7 @@ export default function LeadingPlayer({ user, points }) {
                     </li>
                     <li><p>{points} Points</p></li>
                 </ul>
-            </div>
-        </NavLink>
+            </NavLink>
+        </div>
     )
 }

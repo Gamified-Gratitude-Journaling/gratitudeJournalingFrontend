@@ -29,15 +29,15 @@ export default function MainPage() {
 	// return (<div>
 	// 	{calendarHeatMap}
 	// </div>)
-	console.log(data);
 
 	return (
 		<div>
-			<div className='text-center p-5'>
+			<div className='text-center'>
 				<h1 style={{ fontSize: '48px' }}>Leaderboard</h1>
 			</div>
 			{!data ? <Spinner /> : data.leaderboardStatus.map(({points, user})=>{
 				return <LeadingPlayer 
+					key={user.username}
 					user={user}
 					points={points}
 				/>

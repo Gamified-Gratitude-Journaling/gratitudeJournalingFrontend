@@ -20,8 +20,8 @@ class Test {
 const tests = [
 	//new Test('Authentication', authenticate),
 	//new Test('Journals', journal),
-	//new Test('Prompts', prompt),
-	new Test('Points', point),
+	new Test('Prompts', prompt),
+	//new Test('Points', point),
 	//new Test('Social', social),
 ];
 

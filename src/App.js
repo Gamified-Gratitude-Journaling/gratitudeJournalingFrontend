@@ -8,6 +8,7 @@ import Journal from './pages/Journal';
 import Profile from './pages/Profile';
 import NavBar from './components/NavBar';
 import AuthContext from './context/auth-context';
+import Contribute from './pages/Contribute';
 const Test = React.lazy(() => import('./pages/Test'));
 
 function RequireAuth({ children }) {
@@ -48,13 +49,14 @@ export default function App() {
           logout: logout,
         }}
       >
-        <div className='sticky top-0'>
+        <div className='sticky top-0 z-5'>
           <NavBar />
         </div>
-        <div className="max-w-3xl mx-auto px-2 z-0 mt-6 pb-96 z-0">
+        <div className="max-w-3xl mx-auto px-2 z-0 mt-6 z-0">
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/journal" element={<RequireAuth><Journal /></RequireAuth>} />
+            <Route path="/contribute" element={<RequireAuth><Contribute /></RequireAuth>} />
             <Route path="/leaderboard" element={<Leaderboard />} />
             <Route path="/profile/:username" element={<Profile />} />
             {process.env.NODE_ENV !== 'production' && (

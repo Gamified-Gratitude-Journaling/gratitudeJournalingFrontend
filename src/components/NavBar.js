@@ -5,7 +5,6 @@ import logo from '../pages/images/gratitude symbol.png';
 import user from '../pages/images/user.png';
 
 
-
 export default function NavBar() {
     const [navLinkOpen, navLinkToggle] = useState(false);
     const location = useLocation();

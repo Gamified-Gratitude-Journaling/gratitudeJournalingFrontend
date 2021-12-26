@@ -4,17 +4,15 @@ import { Editor } from 'react-draft-wysiwyg';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 export default function JournalEditor({ initialContent, onContentChange }) {
-	console.log(initialContent);
 	if (!initialContent) { initialContent = EditorState.createEmpty() }
 	else { initialContent = EditorState.createWithContent(convertFromRaw(initialContent)) }
 	const [editorState, setEditorState] = useState(initialContent);
 	return (<React.Fragment>
 		<Editor
-			editorClassName="border-2 max-h-80 min-h-full overflow-auto"
+			editorClassName="border-2 max-h-80 min-h-full overflow-auto bg-gray-100"
 			defaultContentState={initialContent}
 			editorState={editorState}
 			onEditorStateChange={(state) => {
-				console.log(state.getCurrentContent());
 				if (onContentChange) {
 					onContentChange(JSON.stringify(convertToRaw(state.getCurrentContent()), null, 4));
 				}

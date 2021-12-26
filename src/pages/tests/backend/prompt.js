@@ -25,12 +25,10 @@ const createPrompt = async (content) => {
 const fetchPrompt = async () => {
 	const requestBody = `query {
 		prompt {
-			_id
-			content
-			user {
-				email
+			liked
+			prompt{
+				_id
 			}
-			likes
 		}
 	}`;
 	try {
@@ -43,15 +41,7 @@ const fetchPrompt = async () => {
 const likePrompt = async (prompt) => {
 	const requestBody = `mutation {
 		likePrompt(prompt: "${prompt._id}") {
-			_id
 			content
-			user {
-				email
-				likedPrompts {
-					content
-				}
-			}
-			likes
 		}
 	}`;
 	try {
@@ -65,19 +55,20 @@ const prompts = async () => {
 	try {
 		console.log("login user1", await helper.login(env.user1));
 		let createdPrompts = [];
+		const possiblePrompts = ["Write 3 things that made life easier for you today", "Write down one good thing that happened to you today", "What is something nice another person did for you today or this week?"];
 		for (var i = 0; i < 3; i++) {
-			createdPrompts.push(createPrompt(`${i}`));
+			createdPrompts.push(createPrompt(`${possiblePrompts[i]}`));
 		}
 		console.log("createdPrompts", await Promise.all(createdPrompts));
-		let fetchedPrompts = [], likedPrompt = (await fetchPrompt()).data.prompt;
+		let fetchedPrompts = [], likedPrompt = (await fetchPrompt()).data.prompt.prompt;
 		console.log("fail like prompt", await likePrompt(likedPrompt));
-		console.log("fail like prompt again", await likePrompt(likedPrompt));
 		console.log("login user2", await helper.login(env.user2));
 		console.log("like prompt success", await likePrompt(likedPrompt));
+		console.log("fail like prompt again", await likePrompt(likedPrompt));
 		for (var i = 0; i < 100; i++) {
 			fetchedPrompts.push(fetchPrompt());
 		}
-		console.log("fetchedPrompts", (await Promise.all(fetchedPrompts)).map(e => e.data.prompt.content));
+		console.log("fetchedPrompts", (await Promise.all(fetchedPrompts)).map(e => e.data.prompt.prompt));
 	} catch (err) {
 		throw err;
 	}
