@@ -45,8 +45,8 @@ li, a, p{
 
 .navBar{
     display: flex;
-    /*justify-content: space-between;*/
-    /*padding: 0px 40px;*/
+    justify-content: space-between;
+    padding: 0px 100px;
     background-color: white;
     z-index: 100;
     align-items: center;
@@ -136,6 +136,7 @@ li, a, p{
        font-size: 32px;
        transform: translateX(100%);
        background-color: white;
+       z-index: 20000;
        transition: transform 0.5s ease-in;
        
 

@@ -89,12 +89,12 @@ export default function Login() {
 
 		<div className = 'login_container'>
 			<div>
-				<div className = 'col-lg-5 mx-auto w-20'>
+				<div className = 'grid-cols-1 mx-auto w-25 pt-5'>
 					<img className = 'logo img-fluid img-responsive mx-auto' src = {logo} alt='logo' class = 'responsive'/>
-
+					<br/>
 				</div>
 
-				<div className = 'col-lg-7'>
+				<div className = 'grid-cols-3'>
 
 					<form className = 'form grid gap-4'>
 						<h1 className='text-center title'> Gratitude Journal</h1>
