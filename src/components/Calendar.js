@@ -10,7 +10,7 @@ export default function Calendar({ elements, rows, cols }) {
 					data-html={true}
 				>
 					<div
-						className={`rounded place-self-center bg-cyan-500 bg-opacity-${val} h-4 w-4`}
+						className={`rounded place-self-center bg-yellow-300 bg-opacity-${val} h-4 w-4`}
 					>
 						<p>&nbsp;</p>
 					</div>

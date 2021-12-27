@@ -26,8 +26,6 @@ const authLink = setContext((_, { headers }) => {
   }
 });
 
-console.log(process.env);
-
 const client = new ApolloClient({
   cache: new InMemoryCache({}),
   ssrMode: typeof window === 'undefined',
