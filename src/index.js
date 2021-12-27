@@ -12,7 +12,7 @@ import { setContext } from '@apollo/client/link/context';
 import './index.css';
 import App from './App';
 
-const PROD_REACT_APP_API_URI='https://vast-dawn-11590.herokuapp.com/graphql';
+console.log(process.env);
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -30,7 +30,7 @@ const client = new ApolloClient({
   cache: new InMemoryCache({}),
   ssrMode: typeof window === 'undefined',
   link: authLink.concat(createUploadLink({
-    uri: (process.env.NODE_ENV === 'production') ? PROD_REACT_APP_API_URI : process.env.REACT_APP_API_URI,
+    uri: process.env.REACT_APP_API_URI,
   })),
   fetchOptions: {
     mode: "cors"
