@@ -22,6 +22,7 @@ const CURRENT_ENTRY = gql`
 	  currentEntry{
 		  createdAt
 		  content
+		  _id
 		}
   }
 `;
@@ -33,6 +34,7 @@ export default function Journal() {
 	const { loading, error, data } = useQuery(CURRENT_ENTRY);
 	let initialContent = "null";
 	if (data && data.currentEntry) { initialContent = data.currentEntry.content; }
+	console.log(data);
 
 	return (
 		<div className='grid grid-flow-row grid-rows-2'>

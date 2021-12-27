@@ -12,8 +12,6 @@ import { setContext } from '@apollo/client/link/context';
 import './index.css';
 import App from './App';
 
-console.log(process.env);
-
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = sessionStorage.getItem('token');
@@ -42,7 +40,7 @@ ReactDOM.render(
   <ApolloProvider 
     client={client}
   >
-    <App />
+    <App id='App'/>
   </ApolloProvider>,
   document.getElementById('root')
 );

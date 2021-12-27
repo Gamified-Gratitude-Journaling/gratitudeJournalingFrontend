@@ -2,7 +2,9 @@ import ReactModal from 'react-modal'
 import { AiOutlineClose } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 
+
 export default function Modal({ children, isOpen: propsIsOpen, header, footer, propsHandleClose}) {
+	ReactModal.setAppElement('#root');
 	const [isOpen, setIsOpen] = useState(propsIsOpen);
 	useEffect(() => { setIsOpen(propsIsOpen); }, [propsIsOpen]);
 

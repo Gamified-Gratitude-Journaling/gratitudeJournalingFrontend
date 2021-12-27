@@ -16,6 +16,7 @@ const POINTS_QUERY = gql`
 			entries{
 				_id
 				createdAt
+				words
 			}
 			createdPrompts{
 				_id
@@ -42,19 +43,21 @@ export default function Profile() {
 			totalPoints += e.value;
 		});
 		pdata.fetchUser.createdPrompts.forEach(({ likes }) => { totalLikes += likes; })
-		pdata.fetchUser.entries.sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+		let entries = pdata.fetchUser.entries.slice().sort((a, b) =>  b.createdAt.localeCompare(a.createdAt));
 		let prevDate = 0, today = (new Date()).setHours(0, 0, 0, 0), currStreakNot0 = false;
-		pdata.fetchUser.entries.forEach((e) => {
+		entries.forEach((e) => {
 			const currDate = (new Date(e.createdAt)).setHours(0, 0, 0, 0);
 			const ONE_DAY = 1000 * 60 * 60 * 24;
 			if (currDate > prevDate + ONE_DAY) {
 				currentStreak = 0;
+				prevDate=currDate;
 			}
 			currentStreak++;
 			longestStreak = Math.max(longestStreak, currentStreak);
 			currStreakNot0 = currDate === today;
 		});
 		if (!currStreakNot0) currentStreak = 0;
+		pdata.fetchUser.entries.forEach(e=>totalWords+=e.words)
 	}
 
 	return (

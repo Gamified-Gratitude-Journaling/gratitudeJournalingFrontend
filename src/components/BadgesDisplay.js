@@ -17,25 +17,28 @@ export default function BadgesDisplay({ totalPoints, likes, totalWords, longestS
 			name: "Contributor",
 			icon: RiBookletFill,
 			levels: [0, 10, 50, 100, 200, 400],
+			value: likes,
 			description: ["Awarded for total likes on contributed prompts", `Total likes: ${likes}`],
 		},
 		{
 			name: "Journalist",
 			icon: RiBookletFill,
 			levels: [0, 10, 50, 100, 200, 400],
+			value: totalWords,
 			description: ["Awarded for total words written in journals", `Words: ${totalWords}`],
 		},
 		{
 			name: "Wildfire",
 			icon: RiBookletFill,
 			levels: [0, 10, 50, 100, 200, 400],
+			value: longestStreak,
 			description: ["Awarded for longest consecutive days journaled", `Longest Streak: ${longestStreak}`, `Current Streak: ${currentStreak}`],
 		},
 	]
 	return (<div className="grid sm:grid-cols-2">
 		{badges.map(badge => {
-			let ind = 1;
-			badge.levels.forEach(val => { if (badge.value >= val) ind++; });
+			let ind = 0;
+			badge.levels.forEach(val => { if (badge.value > val) ind++; });
 
 			return (<div
 				className={`cursor-pointer mx-auto rounded-md bg-${colors[ind]} my-4`}
