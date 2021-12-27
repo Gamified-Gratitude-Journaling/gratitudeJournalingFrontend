@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { RiBookletFill } from 'react-icons/ri';
+import { AiFillFire } from 'react-icons/ai';
+import { CgPokemon } from 'react-icons/cg';
+import {HiLightBulb} from 'react-icons/hi'
 import Modal from './Modal';
 
 const colors = ["gray-300", "blue-300", "green-300", "red-300", "purple-300", "yellow-400"]
@@ -8,29 +11,29 @@ export default function BadgesDisplay({ totalPoints, likes, totalWords, longestS
 	const badges = [
 		{
 			name: "Collector",
-			icon: RiBookletFill,
+			icon: CgPokemon,
 			levels: [0, 10, 50, 100, 200, 400],
 			value: totalPoints,
 			description: ["Awarded for total accumulated points", `Total points: ${totalPoints}`],
 		},
 		{
-			name: "Contributor",
-			icon: RiBookletFill,
-			levels: [0, 10, 50, 100, 200, 400],
+			name: "Inspirer",
+			icon: HiLightBulb,
+			levels: [0, 10, 50, 100, 500, 1000],
 			value: likes,
 			description: ["Awarded for total likes on contributed prompts", `Total likes: ${likes}`],
 		},
 		{
 			name: "Journalist",
 			icon: RiBookletFill,
-			levels: [0, 10, 50, 100, 200, 400],
+			levels: [0, 50, 100, 200, 400, 1000],
 			value: totalWords,
 			description: ["Awarded for total words written in journals", `Words: ${totalWords}`],
 		},
 		{
 			name: "Wildfire",
-			icon: RiBookletFill,
-			levels: [0, 10, 50, 100, 200, 400],
+			icon: AiFillFire,
+			levels: [0, 1, 7, 30, 100, 365],
 			value: longestStreak,
 			description: ["Awarded for longest consecutive days journaled", `Longest Streak: ${longestStreak}`, `Current Streak: ${currentStreak}`],
 		},
@@ -56,19 +59,19 @@ export default function BadgesDisplay({ totalPoints, likes, totalWords, longestS
 				<p className='text-center mix-blend-soft-light text-black my-1'>{badge.name}</p>
 				{
 					< Modal
-					isOpen={badge.name.localeCompare(activeBadge) === 0}
-					header={badge.name}
-					handleClose={()=>{setActiveBadge("")}}
-				>
-					{badge.description.map((text, i) => {
-						return <p 
-							className={`text-center text-lg ${i !== 0 && "text-gray-400"}`}
-							key={`${badge.name}Desc${i}`}
-						>
-							{text}
-						</p>
-					})}
-				</Modal>}
+						isOpen={badge.name.localeCompare(activeBadge) === 0}
+						header={badge.name}
+						handleClose={() => { setActiveBadge("") }}
+					>
+						{badge.description.map((text, i) => {
+							return <p
+								className={`text-center text-lg ${i !== 0 && "text-gray-400"}`}
+								key={`${badge.name}Desc${i}`}
+							>
+								{text}
+							</p>
+						})}
+					</Modal>}
 			</div>)
 		})}
 	</div >);
