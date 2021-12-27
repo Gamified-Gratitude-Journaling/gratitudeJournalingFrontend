@@ -6,6 +6,7 @@ import JournalEditor from '../components/JournalEditor';
 import Spinner from '../components/Spinner/Spinner';
 import PromptDisplay from '../components/PromptDisplay';
 import { debounce, initial } from 'lodash';
+import DraftjsTextEditor from '../components/DraftjsTextEditor';
 
 const JOURNAL_ENTRY_UPLOAD_MUTATION = gql`
   mutation JournalEntryUpload($content: String!) {
@@ -34,12 +35,18 @@ export default function Journal() {
 	if (data && data.currentEntry) { initialContent = data.currentEntry.content; }
 
 	return (
-		<div>
+		<div className='grid grid-flow-row grid-rows-2'>
 			<div>
 				<PromptDisplay />
 			</div>
-			<div class="border-2 max-w-7xl">
-				{loading ? <Spinner /> : (<div>
+
+			
+
+			<div class="max-w-7xl">
+				<div>
+					<h1 className='text-center'>Answer this prompt!</h1>
+				</div>
+				{loading ? <Spinner /> : (<div className = 'editor'>
 					<JournalEditor
 						onContentChange={debounce((content) => {
 							journalEntryUploadMutation({ variables: { content } });
@@ -47,6 +54,8 @@ export default function Journal() {
 						initialContent={JSON.parse(initialContent)}
 					/>
 					<p className='text-opacity-50'>{mutateLoading ? "Saving..." : "Saved"}</p>
+					
+					{/* <DraftjsTextEditor/> */}
 				</div>)}
 			</div>
 		</div>

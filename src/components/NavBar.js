@@ -37,21 +37,25 @@ export default function NavBar() {
 
     return (
         <div>
-            <nav className='navBar place-content-around'>
-                <ul className={renderClass()}>
-                    <li><NavLink to={`/profile/${username}`}>
-                        <div className="flex">
-                            <img src={user} />
-                            <h1 className="pl-2">Profile</h1>
-                        </div>
-                    </NavLink></li>
-                    <li><NavLink to='/journal'><h1>Journal</h1></NavLink></li>
-                    <li><NavLink to='/leaderboard'><h1>Leaderboard</h1></NavLink></li>
-                </ul>
+            <nav className='navBar'>
+                
 
                 <NavLink to='#' className="._logoNav">
                     <img src={logo} width={37} height={39} alt=' ' />
                 </NavLink>
+
+                <ul className={renderClass()}>
+                    
+                    <li><NavLink to='/journal'><h2>Journal</h2></NavLink></li>
+                    <li><NavLink to='/leaderboard'><h2>Leaderboard</h2></NavLink></li>
+                    <li><NavLink to={`/profile/${username}`}>
+                        <div className="flex items-center">
+                            <h2 >Profile</h2>
+                            <img className="pl-2" src={user} />
+
+                        </div>
+                    </NavLink></li>
+                </ul>
 
                 <div onClick={() => handleNavLinksToggle()} className='burger' id='burgerS'>
                     <div className='line1'></div>
