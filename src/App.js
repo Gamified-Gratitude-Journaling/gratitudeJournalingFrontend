@@ -54,7 +54,9 @@ export default function App() {
         <div className='sticky top-0 z-5'>
           <NavBar />
         </div>
-        <div className="max-w-3xl mx-auto px-2 z-0 mt-6 z-0">
+
+        
+        <div className="max-w-3xl mx-auto px-2 mt-6 z-0 " id = 'mainBodyDiv'>
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/journal" element={<RequireAuth><Journal /></RequireAuth>} />
@@ -71,6 +73,8 @@ export default function App() {
             <Route path="*" element={<Navigate to="/journal" />} />
           </Routes>
         </div>
+      
+      
       </AuthContext.Provider>
     </BrowserRouter>
   );
