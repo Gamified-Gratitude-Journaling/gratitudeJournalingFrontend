@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useQuery, gql } from "@apollo/client";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 import Spinner from '../../components/Spinner/Spinner';
 import Table from '../../components/Table';
@@ -19,7 +19,7 @@ const FETCH_USER_QUERY = gql`
 
 export default function Prompts() {
 	const { username } = useParams();
-	const { loading, error, data: qdata } = useQuery(FETCH_USER_QUERY, { variables: { username } });
+	const { loading, error, data: qdata} = useQuery(FETCH_USER_QUERY, { variables: { username } });
 	let prompts = [];
 	if (qdata) { prompts = qdata.fetchUser.createdPrompts }
 
@@ -57,8 +57,9 @@ export default function Prompts() {
 
 	return (
 		<div className="grid grid-cols-1">
+			<NavLink to="/contribute"><p className='text-center text-gray-400 mb-10 hover:text-yellow-400'>Contribute?</p></NavLink>
 			<h2 className='pl-4 mb-2 text-center'>Contributed Prompts</h2>
-			{prompts.length === 0 ? <p>No prompts</p> : <Table
+			{prompts.length === 0 ? <p className='text-center'>No prompts</p> : <Table
 				columns={columns}
 				data={data}
 			/>}

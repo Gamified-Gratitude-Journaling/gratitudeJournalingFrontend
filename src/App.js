@@ -30,7 +30,6 @@ export default function App() {
 
   const login = (token, userId, tokenExpiration, email, username) => {
     setToken(token); setUserId(userId); setEmail(email); setUsername(username);
-    sessionStorage.setItem('token', token);
   }
 
   const logout = () => {
@@ -46,6 +45,7 @@ export default function App() {
           token: token,
           userId: userId,
           email: email,
+          username,
           login: login,
           logout: logout,
         }}

@@ -33,13 +33,11 @@ const links = [
 export default function Profile() {
 	const { token, username: currentUsername } = useContext(authContext);
 	let { username, '*': active } = useParams();
-	console.log(useParams());
 	const { loading, error, data } = useQuery(ISFOLLOWING_QUERY, { variables: { followee: username } });
 	const [toggleFollowMutation] = useMutation(TOGGLE_FOLLOW_MUTATION, {
 		refetchQueries: [ISFOLLOWING_QUERY],
 		variables: { followee: username }
 	});
-	console.log(active);
 	if (error) {
 		if ("User not found".localeCompare(error.message) === 0) return <p>User not found</p>
 		if ("Not signed in".localeCompare(error.message) !== 0) return <p>An error has occurred. Try refreshing the page. </p>

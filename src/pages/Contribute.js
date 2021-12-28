@@ -1,7 +1,7 @@
 import { gql, useMutation } from "@apollo/client";
-import { useState } from "react"
-import { NavLink } from "react-router-dom";
+import { useContext, useState } from "react"
 import Spinner from "../components/Spinner/Spinner";
+import authContext from "../context/auth-context";
 
 const SUBMIT_PROMPT = gql(`
 	mutation SubmitPrompt($content: String!){
@@ -14,13 +14,14 @@ const SUBMIT_PROMPT = gql(`
 export default function Contribute() {
 	const [content, setContent] = useState("");
 	const [submitPromptMutation, {loading, error, data}] = useMutation(SUBMIT_PROMPT);
+	const {username} = useContext(authContext);
 	//console.log(loading,error,data);
 	if (loading) {return <Spinner /> }
 	if (error) {return <h1 className="text-center">Something went wrong, please refresh the page and try again</h1>}
 	if (data) {
 		return <div>
 			<h1 className="text-center my-20">Success!</h1>
-			<NavLink to="/Journal"><p className="text-center">Return to Home</p></NavLink>
+			<a href={`/profile/${username}/prompts`}><p className="text-center">View Prompts</p></a>
 		</div>
 	}
 

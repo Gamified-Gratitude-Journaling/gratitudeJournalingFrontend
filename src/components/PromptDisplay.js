@@ -1,8 +1,9 @@
 import { AiOutlineLike } from 'react-icons/ai';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { gql, useQuery, useMutation, } from '@apollo/client';
 import Spinner from './Spinner/Spinner';
 import { NavLink } from 'react-router-dom';
+import authContext from '../context/auth-context';
 
 const FETCH_PROMPT = gql(`
 	query FetchPrompt {
@@ -30,7 +31,7 @@ const LIKE_PROMPT = gql(`
 
 
 export default function PromptDisplay() {
-	const username = sessionStorage.getItem("username");
+	const { username } = useContext(authContext);
 	let { loading, error, data } = useQuery(FETCH_PROMPT);
 	const [likePromptMutation] = useMutation(LIKE_PROMPT);
 	const [isLiked, setIsLiked] = useState(false);
@@ -69,7 +70,7 @@ export default function PromptDisplay() {
 					</div>
 				</div>
 			</div>
-			
+
 			<div className="grid grid-cols-2 border-t-2 mb-2 pt-2 px-5 items-center">
 				<div className=' w-full md:pl-10 cursor-pointer'>
 					{data.prompt.user.username !== username &&
@@ -78,15 +79,15 @@ export default function PromptDisplay() {
 						</div>
 					}
 					{/*<div onClick={like.bind(this,false)} className='h-4 w-4 mr-4'><AiOutlineDislike color={data.liked && "SteelBlue"}/></div>*/}
-				
-					
+
+
 				</div>
 
 				<NavLink to="/Contribute" className='text-right' >
-						<p className='text-gray-300 hover:text-yellow-400'>Contribute?</p>
+					<p className='text-gray-300 hover:text-yellow-400'>Contribute?</p>
 				</NavLink>
 
-				
+
 			</div>
 		</div >
 	);

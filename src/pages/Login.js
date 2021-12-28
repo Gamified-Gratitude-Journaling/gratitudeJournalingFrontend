@@ -76,8 +76,6 @@ export default function Login() {
 					email,
 					data.login.username,
 				);
-				sessionStorage.setItem('token', data.login.token);
-				sessionStorage.setItem('username', data.login.username);
 				navigate(from, { replace: true });
 			}
 		} catch (err) {

@@ -1,20 +1,20 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import '../index.css';
 import logo from '../pages/images/gratitude symbol.png';
 import user from '../pages/images/user.png';
+import authContext from "../context/auth-context";
 
 
 export default function NavBar() {
+    const { token, username } = useContext(authContext);
     const [navLinkOpen, navLinkToggle] = useState(false);
     const location = useLocation();
 
     if (location.pathname.localeCompare("/login") === 0) return <></>
-    const token = sessionStorage.getItem('token');
     if (!token) {
         return (<nav className="navBar place-content-center"><NavLink to='/login'>Login</NavLink></nav>)
     }
-    const username = sessionStorage.getItem('username');
 
     const handleNavLinksToggle = () => {
         navLinkToggle(!navLinkOpen);
@@ -38,14 +38,14 @@ export default function NavBar() {
     return (
         <div>
             <nav className='navBar'>
-                
+
 
                 <NavLink to='#' className="._logoNav">
                     <img src={logo} width={37} height={39} alt=' ' />
                 </NavLink>
 
                 <ul className={renderClass()}>
-                    
+
                     <li><NavLink to='/journal'><h2>Journal</h2></NavLink></li>
                     <li><NavLink to='/leaderboard'><h2>Leaderboard</h2></NavLink></li>
                     <li><NavLink to={`/profile/${username}`}>
