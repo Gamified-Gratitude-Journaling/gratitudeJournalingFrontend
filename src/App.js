@@ -51,7 +51,7 @@ export default function App() {
           logout: logout,
         }}
       >
-        <div className='sticky top-0 z-5'>
+        <div className='sticky top-0 z-50'>
           <NavBar />
         </div>
 
