@@ -37,7 +37,8 @@
     "react-scriptsBuild": "react-scripts build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "start-production": "serve -s build"
+    "start-production": "serve -s build",
+    "heroku-prebuild": "npm install --no-optional"
   },
   "eslintConfig": {
     "extends": [
