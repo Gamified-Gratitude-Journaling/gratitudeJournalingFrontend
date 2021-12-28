@@ -46,7 +46,7 @@ const RandomPromptDisplay = () => {
 		setIsLiked(!isLiked);
 	}
 
-	const getPrompt = () => {refetch();}
+	const getPrompt = () => { refetch(); }
 
 	return (
 		<div className="grid w-full mx-auto px-2 rounded-lg bg-white drop-shadow-lg pt-4 sm:px-10 mb-4">
@@ -114,10 +114,13 @@ export default function PromptDisplay() {
 	return (
 		<div className="grid w-full mx-auto px-2 rounded-lg bg-white drop-shadow-lg pt-4 sm:px-10 mb-4">
 			<div className=" rounded-lg mb-6 px-2">
-				<div className="w-full mb-4 pt-4">
+				<div className="flex w-full mb-4 pt-4">
 					<div className="text-3xl text-indigo-500 text-left leading-tight h-3">“</div>
-					<p className="text-lg text-gray-600 text-center px-1">Default prompt</p>
-					<div className="text-3xl text-indigo-500 text-right leading-tight h-3 -mt-3">”</div>
+					<p className="text-lg text-gray-600 text-center px-1">There are many things in our lives, both large and small, that we might
+						be grateful about. Think back over the past week and write down on
+						the lines below up to five things in your life that you are grateful or
+						thankful for.</p>
+					<div className="text-3xl text-indigo-500 text-right leading-tight h-3">”</div>
 				</div>
 			</div>
 			<div className="grid grid-cols-2 border-t-2 mb-2 pt-2 px-1 sm:px-5 items-center">
