@@ -6,7 +6,7 @@ import JournalCalendar from '../../components/JournalCalendar';
 import Spinner from '../../components/Spinner/Spinner';
 
 const FETCH_USER_QUERY = gql`
-  query FetchUser($username: String!){
+  query Overview($username: String!){
 	  	fetchUser(username: $username){
 			points {
 				createdAt

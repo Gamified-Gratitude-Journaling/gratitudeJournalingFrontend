@@ -37,7 +37,7 @@ export default function Journal() {
 	console.log(data);
 
 	return (
-		<div className='grid grid-flow-row grid-rows-2'>
+		<div className='grid grid-flow-row grid-rows-2 pt-16'>
 			<div>
 				<PromptDisplay />
 			</div>
