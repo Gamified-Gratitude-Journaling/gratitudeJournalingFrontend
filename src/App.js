@@ -25,11 +25,11 @@ export default function App() {
   const [token, setToken] = useState(null);
   const [userId, setUserId] = useState(null);
   const [email, setEmail] = useState(null);
+  const [username, setUsername] = useState(null);
   const client = useApolloClient();
 
-  const login = (token, userId, tokenExpiration, email) => {
-    setToken(token); setUserId(userId); setEmail(email);
-    sessionStorage.setItem('token', token);
+  const login = (token, userId, tokenExpiration, email, username) => {
+    setToken(token); setUserId(userId); setEmail(email); setUsername(username);
   }
 
   const logout = () => {
@@ -45,6 +45,7 @@ export default function App() {
           token: token,
           userId: userId,
           email: email,
+          username,
           login: login,
           logout: logout,
         }}
@@ -60,7 +61,7 @@ export default function App() {
             <Route path="/journal" element={<RequireAuth><Journal /></RequireAuth>} />
             <Route path="/contribute" element={<RequireAuth><Contribute /></RequireAuth>} />
             <Route path="/leaderboard" element={<Leaderboard />} />
-            <Route path="/profile/:username" element={<Profile />} />
+            <Route path="/profile/:username/*" element={<Profile />} />
             {process.env.NODE_ENV !== 'production' && (
               <Route path="/test" element={
                 <Suspense fallback={<p>loading...</p>}>
