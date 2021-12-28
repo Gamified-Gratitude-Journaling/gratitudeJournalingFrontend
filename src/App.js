@@ -30,6 +30,7 @@ export default function App() {
 
   const login = (token, userId, tokenExpiration, email, username) => {
     setToken(token); setUserId(userId); setEmail(email); setUsername(username);
+    sessionStorage.setItem('token', token); //still needed for apollo client
   }
 
   const logout = () => {
@@ -45,7 +46,7 @@ export default function App() {
           token: token,
           userId: userId,
           email: email,
-          username,
+          username: username,
           login: login,
           logout: logout,
         }}
