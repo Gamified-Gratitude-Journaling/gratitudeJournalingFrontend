@@ -20,7 +20,7 @@ export default function JournalEditor({ initialContent, onContentChange }) {
 
 	return (<React.Fragment>
 		<Editor
-			editorClassName="border-2 max-h-80 min-h-full overflow-auto bg-gray-100 px-2"
+			editorClassName="border-2 max-h-80 min-h-full overflow-auto bg-gray-100 px-4 sm:px-8"
 			defaultContentState={initialContent}
 			editorState={editorState}
 			onEditorStateChange={(state) => {

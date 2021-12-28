@@ -42,23 +42,23 @@ export default function Journal() {
 				<PromptDisplay />
 			</div>
 
-			
 
-			<div class="max-w-7xl">
-				<div>
-					<h1 className='text-center'>Answer this prompt!</h1>
-				</div>
-				{loading ? <Spinner /> : (<div className = '' id='journalEditor'>
-					<JournalEditor
-						onContentChange={debounce((content) => {
-							journalEntryUploadMutation({ variables: { content } });
-						}, 1000)}
-						initialContent={JSON.parse(initialContent)}
-					/>
-					<p className='text-opacity-50'>{mutateLoading ? "Saving..." : "Saved"}</p>
-					
-					{/* <DraftjsTextEditor/> */}
-				</div>)}
+
+			<div class="max-w-5xl">
+				{loading ? <Spinner /> : (
+					<div className='grid place-content-center space-y-2'>
+						<div className='' id='journalEditor'>
+							<JournalEditor
+								onContentChange={debounce((content) => {
+									journalEntryUploadMutation({ variables: { content } });
+								}, 1000)}
+								initialContent={JSON.parse(initialContent)}
+							/>
+							{/* <DraftjsTextEditor/> */}
+						</div>
+						<button className='px-2'>Submit Journal</button>
+					</div>
+				)}
 			</div>
 		</div>
 	);

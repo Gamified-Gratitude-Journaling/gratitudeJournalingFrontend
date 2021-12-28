@@ -31,9 +31,9 @@ const LIKE_PROMPT = gql(`
 
 
 
-export default function PromptDisplay() {
+const RandomPromptDisplay = () => {
 	const { username } = useContext(authContext);
-	let { loading, error, data } = useQuery(FETCH_PROMPT);
+	let { loading, error, data, refetch } = useQuery(FETCH_PROMPT);
 	const [likePromptMutation] = useMutation(LIKE_PROMPT);
 	const [isLiked, setIsLiked] = useState(false);
 	useEffect(() => { if (data) setIsLiked(data.liked) }, [data]);
@@ -46,32 +46,39 @@ export default function PromptDisplay() {
 		setIsLiked(!isLiked);
 	}
 
+	const getPrompt = () => {refetch();}
+
 	return (
 		<div className="grid w-full mx-auto px-2 rounded-lg bg-white drop-shadow-lg pt-4 sm:px-10 mb-4">
-			<div className=" rounded-lg mb-6 px-2">
-				<NavLink to={`/profile/${data.prompt.user.username}`}>
-					<div className='flex place-content-center grid-cols-2'>
-						<div className="grid place-content-center overflow-hidden rounded-full w-20 h-20 shadow-lg -mt-10">
-							<CgProfile className='w-12 h-12' />
+			<div className="rounded-lg mb-6 px-2">
+				<div className='grid grid-cols-2'>
+					<NavLink className='justify-self-end' to={`/profile/${data.prompt.user.username}`}>
+						<div className='flex place-content-center grid-cols-2'>
+							<div className="grid place-content-center overflow-hidden rounded-full w-20 h-20 shadow-lg -mt-10">
+								<CgProfile className='w-12 h-12' />
+							</div>
+							<div className='flex place-content-center ml-4'>
+								<p className="text-md text-indigo-500 font-bold text-end">{data.prompt.user.username}</p>
+								{/*<p className="text-xs text-gray-500 text-center">@scott.windon</p>*/}
+							</div>
 						</div>
-						<div className='flex place-content-center ml-4'>
-							<p className='text-gray-400'>Prompt by:&#160;</p><p className="text-md text-blue-500 font-bold text-end">{data.prompt.user.username}</p>
-							{/*<p className="text-xs text-gray-500 text-center">@scott.windon</p>*/}
-						</div>
-					</div>
-				</NavLink>
-				<div className="w-full mb-4 pt-4">
-					<div className="text-3xl text-indigo-500 text-left leading-tight h-3">“</div>
-					<p className="text-lg text-gray-600 text-center px-1">{data.prompt.content}</p>
-					<div className="text-3xl text-indigo-500 text-right leading-tight h-3 -mt-3">”</div>
+					</NavLink>
+					<NavLink to="/Contribute" className='justify-self-end' >
+						<p className='text-gray-300 hover:text-yellow-400'>Contribute?</p>
+					</NavLink>
+				</div>
+				<div className="flex place-content-center w-full mb-4 pt-4">
+					<div className="text-3xl text-indigo-500 text-left h-3 -mt-2">“</div>
+					<p className="text-lg text-gray-600 text-center px-1 mx-1">{data.prompt.content}</p>
+					<div className="text-3xl text-indigo-500 text-right h-3 -mt-2">”</div>
 				</div>
 
 			</div>
 
-			<div className="grid grid-cols-2 border-t-2 mb-2 pt-2 px-5 items-center">
-				<div className=' w-full md:pl-10 cursor-pointer'>
+			<div className="grid grid-cols-2 border-t-2 mb-2 pt-2 px-2 sm:px-5">
+				<div className=' md:pl-10'>
 					{data.prompt.user.username !== username &&
-						<div onClick={like} className='h-4 w-4'>
+						<div onClick={like} className='h-4 w-4 cursor-pointer'>
 							<AiOutlineLike color={isLiked ? "gold" : "gray"} />
 						</div>
 					}
@@ -80,12 +87,50 @@ export default function PromptDisplay() {
 
 				</div>
 
-				<NavLink to="/Contribute" className='text-right' >
-					<p className='text-gray-300 hover:text-yellow-400'>Contribute?</p>
-				</NavLink>
+				<div
+					className='flex place-content-end cursor-pointer'
+					onClick={getPrompt}
+				>
+					<p className='text-gray-300 hover:text-yellow-400'>Random prompt</p>
+				</div>
 
 
 			</div>
 		</div >
 	);
+}
+
+
+export default function PromptDisplay() {
+	const [isRandom, setIsRandom] = useState(false);
+
+	const getPrompt = () => {
+		setIsRandom(false);
+		setIsRandom(true);
+	}
+
+	if (isRandom) { return <RandomPromptDisplay /> }
+
+	return (
+		<div className="grid w-full mx-auto px-2 rounded-lg bg-white drop-shadow-lg pt-4 sm:px-10 mb-4">
+			<div className=" rounded-lg mb-6 px-2">
+				<div className="w-full mb-4 pt-4">
+					<div className="text-3xl text-indigo-500 text-left leading-tight h-3">“</div>
+					<p className="text-lg text-gray-600 text-center px-1">Default prompt</p>
+					<div className="text-3xl text-indigo-500 text-right leading-tight h-3 -mt-3">”</div>
+				</div>
+			</div>
+			<div className="grid grid-cols-2 border-t-2 mb-2 pt-2 px-1 sm:px-5 items-center">
+				<div
+					className='text-left cursor-pointer'
+					onClick={getPrompt}
+				>
+					<p className='text-gray-300 hover:text-yellow-400'>Random prompt</p>
+				</div>
+				<NavLink to="/Contribute" className='text-right' >
+					<p className='text-gray-300 hover:text-yellow-400'>Contribute?</p>
+				</NavLink>
+			</div>
+		</div >
+	)
 }
