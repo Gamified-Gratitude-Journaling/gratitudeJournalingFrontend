@@ -1,119 +1,80 @@
-import { useApolloClient, gql, useQuery, } from '@apollo/client';
-import PointCalendar from '../components/PointCalendar';
+import { gql, useQuery, useMutation, } from '@apollo/client';
+import { CgProfile } from 'react-icons/cg';
+import { NavLink, Route, Routes, useParams, } from 'react-router-dom';
+import { useContext } from 'react';
 
-import Spinner from '../components/Spinner/Spinner';
-import { useParams } from 'react-router-dom';
-import BadgesDisplay from '../components/BadgesDisplay';
-import JournalCalendar from '../components/JournalCalendar';
+import authContext from '../context/auth-context';
+import Badges from './profile/Badges';
+import Overview from './profile/Overview';
+import Social from './profile/Social';
+import Prompts from './profile/Prompts';
 
-const POINTS_QUERY = gql`
-  query Points($username: String!){
-	  	fetchUser(username: $username){
-			points {
-				createdAt
-				value
-			}
-			entries{
-				_id
-				createdAt
-				words
-			}
-			createdPrompts{
-				_id
-				likes
-			}
+const ISFOLLOWING_QUERY = gql`
+  query IsFollowing($followee: String!){
+	isFollowing(followee: $followee)
+  }
+`;
+
+const TOGGLE_FOLLOW_MUTATION = gql`
+  mutation ToggleFollow($followee: String!){
+	  	toggleFollow(followee: $followee){
+			username
 		}
   }
 `;
 
-export default function Profile() {
-	const apolloClient = useApolloClient();
-	apolloClient.resetStore();
-	let { username } = useParams();
-	const { loading: ploading, error: perror, data: pdata } = useQuery(POINTS_QUERY, { variables: { username } });
-	if (perror) {
-		return <p>User not found</p>
-	}
-	const token = sessionStorage.getItem("token");
-	console.log(pdata);
+const links = [
+	{path: '', component: <NavLink to="">Overview</NavLink>},
+	{path: 'badges', component: <NavLink to="badges">Badges</NavLink>},
+	{path: 'prompts', component: <NavLink to="prompts">Prompts</NavLink>},
+	{path: 'social', component: <NavLink to="social">Social</NavLink>},
+];
 
-	let totalPoints = 0, totalLikes = 0, totalWords = 0, longestStreak = 0, currentStreak = 0;
-	if (pdata) {
-		pdata.fetchUser.points.forEach(e => {
-			totalPoints += e.value;
-		});
-		pdata.fetchUser.createdPrompts.forEach(({ likes }) => { totalLikes += likes; })
-		let entries = pdata.fetchUser.entries.slice().sort((a, b) =>  b.createdAt.localeCompare(a.createdAt));
-		let prevDate = 0, today = (new Date()).setHours(0, 0, 0, 0), currStreakNot0 = false;
-		entries.forEach((e) => {
-			const currDate = (new Date(e.createdAt)).setHours(0, 0, 0, 0);
-			const ONE_DAY = 1000 * 60 * 60 * 24;
-			if (currDate > prevDate + ONE_DAY) {
-				currentStreak = 0;
-				prevDate=currDate;
-			}
-			currentStreak++;
-			longestStreak = Math.max(longestStreak, currentStreak);
-			currStreakNot0 = currDate === today;
-		});
-		if (!currStreakNot0) currentStreak = 0;
-		pdata.fetchUser.entries.forEach(e=>totalWords+=e.words)
+export default function Profile() {
+	const { token, username: currentUsername } = useContext(authContext);
+	let { username, '*': active } = useParams();
+	console.log(useParams());
+	const { loading, error, data } = useQuery(ISFOLLOWING_QUERY, { variables: { followee: username } });
+	const [toggleFollowMutation] = useMutation(TOGGLE_FOLLOW_MUTATION, {
+		refetchQueries: [ISFOLLOWING_QUERY],
+		variables: { followee: username }
+	});
+	console.log(active);
+	if (error) {
+		if ("User not found".localeCompare(error.message) === 0) return <p>User not found</p>
+		if ("Not signed in".localeCompare(error.message) !== 0) return <p>An error has occurred. Try refreshing the page. </p>
 	}
 
 	return (
-		<div className="grid grid-cols-1 sm:grid-cols-2">
-			{token && (<div className='sm:col-span-2'>
-				<h2 className='pl-4 mb-2'>Surveys</h2>
-				<div className='grid grid-cols-3 rounded bg-white pb-2 place-content-evenly'>
-					<div className='place-self-center'>
-						<h2>To be completed:</h2>
-					</div>
-				</div>
-			</div>)}
-			<div className='my-4 mx-2 md:mx-3'>
-				<h2 className='pl-4 mb-2 text-center'>Point History</h2>
-				<div className='rounded bg-white pb-2'>
-					{ploading ? <Spinner /> : <PointCalendar
-						entries={pdata.fetchUser.points}
-						rows={4}
-						cols={7}
-					/>}
+		<div className="grid grid-cols-1 overflow-hidden pb-40">
+			<div className='flex mx-auto'>
+				<CgProfile className='w-40 h-40' />
+				<div className='place-self-center ml-5'>
+					<h1 className='text-center mt-4'>{username}</h1>
+					{token && username !== currentUsername && <button className='px-2 mt-2'
+						onClick={() => toggleFollowMutation()}
+					>
+						{data && data.isFollowing ? "Following" : "Follow"}
+					</button>}
 				</div>
 			</div>
-			<div className='my-4 mx-2 md:mx-3'>
-				<h2 className='pl-4 mb-2 text-center'>Journal History</h2>
-				<div className='rounded bg-white pb-2'>
-					{ploading ? <Spinner /> : <JournalCalendar
-						entries={pdata.fetchUser.entries}
-						rows={4}
-						cols={7}
-					/>}
-				</div>
+			<div className='grid place-content-center w-full mt-8'>
+				<ul className='list-none flex space-x-10 overflow-x-auto '>
+					{links.map(link => (<li 
+						key={link.path}
+						className={link.path.localeCompare(active) === 0 && 'text-hoverColor'}
+					>
+						{link.component}
+					</li>))}
+				</ul>
 			</div>
-			<div className='sm:col-span-2 my-4 mx-2 md:mx-3'>
-				<h2 className='pl-4 mb-2'>Badges</h2>
-				<div className='rounded bg-white pb-2'>
-					{ploading ? <Spinner /> : <BadgesDisplay
-						totalPoints={totalPoints}
-						entries={pdata.fetchUser.entries}
-						likes={totalLikes}
-						totalWords={totalWords}
-						longestStreak={longestStreak}
-						currentStreak={currentStreak}
-					/>}
-				</div>
-			</div>
-			<div className='sm:col-span-2 my-4 mx-2 md:mx-3'>
-				<h2 className='pl-4 mb-2'>Created Prompts</h2>
-				<div className='grid grid-cols-3 rounded bg-white pb-2'>
-				</div>
-			</div>
-			<div className='sm:col-span-2 my-4 mx-2 md:mx-3'>
-				<h2 className='pl-4 mb-2'>Stats</h2>
-				<div className='grid grid-cols-3 rounded bg-white pb-2'>
-					<p>Total Points: {totalPoints}</p>
-				</div>
-			</div>
+			<div className='w-screen border-b-4 mt-2 mb-16 w-inf -ml-96' />
+			<Routes>
+				<Route path="badges" element={<Badges />} />
+				<Route path="social" element={<Social />} />
+				<Route path="prompts" element={<Prompts />} />
+				<Route path="*" element={<Overview />} />
+			</Routes>
 		</div>
 	);
 }

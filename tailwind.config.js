@@ -10,6 +10,10 @@ module.exports = {
     extend: {
       colors: {
         cyan: colors.cyan,
+        hoverColor: '#0088a9',
+      },
+      width: {
+        'inf': '1000%',
       }
     },
     container: {
