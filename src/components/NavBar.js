@@ -21,15 +21,27 @@ export default function NavBar() {
     }
 
     const renderClass = () => {
-        let classes = "nav_links";
+        let classes = "nav_links items-center";
+        // let toDisable = document.getElementById('journalEditor');
+        let toDisable = document.getElementById('mainBodyDiv');
 
         if (navLinkOpen) {
             classes += " active backdrop-blur-lg";
-            //document.body.style.display = "none";
+            
+            toDisable.classList.remove('textBox_active');
+            toDisable.classList.add('textBox_deactive');
+
         }
 
         else {
-            //document.body.style.overflow = "scroll";
+            if(toDisable !== null){
+
+                toDisable.classList.remove('textBox_deactive');
+                toDisable.classList.add('textBox_active');
+            }
+
+
+
         }
 
         return classes;
@@ -57,7 +69,7 @@ export default function NavBar() {
                     </NavLink></li>
                 </ul>
 
-                <div onClick={() => handleNavLinksToggle()} className='burger' id='burgerS'>
+                <div onClick={() => handleNavLinksToggle()} className='burger'>
                     <div className='line1'></div>
                     <div className='line2'></div>
                     <div className='line3'></div>

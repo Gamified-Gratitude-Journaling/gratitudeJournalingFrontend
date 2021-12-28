@@ -20,7 +20,7 @@ export default function JournalEditor({ initialContent, onContentChange }) {
 
 	return (<React.Fragment>
 		<Editor
-			editorClassName="border-2 max-h-80 min-h-full overflow-auto bg-gray-100 editor-class"
+			editorClassName="border-2 max-h-80 min-h-full overflow-auto bg-gray-100 px-2"
 			defaultContentState={initialContent}
 			editorState={editorState}
 			onEditorStateChange={(state) => {
@@ -30,14 +30,21 @@ export default function JournalEditor({ initialContent, onContentChange }) {
 				setEditorState(state);
 			}}
 			toolbar={{
-				options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'emoji', 'image', 'history'],
-				inline: { inDropdown: true },
-				list: { inDropdown: true },
-				textAlign: { inDropdown: true },
+				options: ['inline', 'blockType', 'list', 'textAlign', 'colorPicker', 'emoji', 'image', 'history'],
+				inline: { 
+					options: ['bold', 'italic', 'underline'],
+				},
+				blockType: {
+					options: ['H1', 'H2', 'Normal'],
+				},
+				list: {
+					options: ['unordered', 'ordered'],
+				},
+				
 				link: { inDropdown: true },
 				history: { inDropdown: false },
 			}}
-			toolbarOnFocus
+			
 		/>
 	</React.Fragment>);
 }

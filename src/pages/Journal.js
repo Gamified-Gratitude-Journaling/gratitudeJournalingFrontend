@@ -48,7 +48,7 @@ export default function Journal() {
 				<div>
 					<h1 className='text-center'>Answer this prompt!</h1>
 				</div>
-				{loading ? <Spinner /> : (<div className = 'editor'>
+				{loading ? <Spinner /> : (<div className = '' id='journalEditor'>
 					<JournalEditor
 						onContentChange={debounce((content) => {
 							journalEntryUploadMutation({ variables: { content } });
