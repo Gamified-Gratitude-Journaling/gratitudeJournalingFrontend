@@ -17,7 +17,6 @@ export default function Table({ columns, data }) {
 		useSortBy
 	)
 
-	console.log(headerGroups);
 	return (
 		<>
 			<table {...getTableProps()}>
