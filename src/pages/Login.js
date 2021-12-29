@@ -1,6 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { useApolloClient, gql, useMutation, useQuery, } from '@apollo/client';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import authContext from '../context/auth-context';
 import logo from './images/gratitude symbol.png';
 import '../index.css';
@@ -48,12 +50,8 @@ export default function Login() {
 
 		if (email.trim().length === 0 || password.trim().length === 0) { return; }
 
-		try {
-			await createUserMutation({ variables: { email, password, username } });
-			return await loginHandler(event, email, password);
-		} catch (err) {
-			console.log(err);
-		}
+		await createUserMutation({ variables: { email, password, username } });
+		return loginHandler(event, email, password);
 	};
 
 	const loginHandler = async (event, email, password) => {
@@ -63,25 +61,31 @@ export default function Login() {
 
 		if (email.trim().length === 0 || password.trim().length === 0) { return; }
 
-		try {
-			const data = (await apolloClient.query({
-				query: LOGIN_QUERY,
-				variables: { email, password }
-			})).data;
-			if (data.login.token) {
-				context.login(
-					data.login.token,
-					data.login.userId,
-					data.login.tokenExpiration,
-					email,
-					data.login.username,
-				);
-				navigate(from, { replace: true });
-			}
-		} catch (err) {
-			console.log(err);
+		const data = (await apolloClient.query({
+			query: LOGIN_QUERY,
+			variables: { email, password }
+		})).data;
+		if (data.login.token) {
+			context.login(
+				data.login.token,
+				data.login.userId,
+				data.login.tokenExpiration,
+				email,
+				data.login.username,
+			);
+			navigate(from, { replace: true });
 		}
 	};
+
+	const handleSubmit = (event) => {
+		let promise = loginHandler, loading = 'Logging in...';
+		if (!isLogin) promise = registerHandler;
+		toast.promise(()=>promise(event), {
+			loading: 'loading',
+			success: 'Success!',
+			error: {render({data}){console.log(data); return <p>Error: {data.message}</p>}},
+		})
+	}
 
 	return (
 
@@ -92,27 +96,26 @@ export default function Login() {
 
 			<div className='grid-cols-3'>
 
-				<form className='form grid gap-4'>
+				<form className='form grid gap-4' onSubmit={handleSubmit}>
 					<h1 className='text-center title'> Gratitude Journal</h1>
 
 					{!isLogin && (<div className='text-center'>
-						<input className='login' placeholder='Username' type="username" id="username" ref={usernameEl} />
+						<input className='login' placeholder='Username' type="username" id="username" ref={usernameEl} required='required' />
 					</div>)}
 
 					<div className='text-center'>
-						<input className='login' placeholder='Email' type='email' id='email' ref={emailEl} />
+						<input className='login' placeholder='Email' type='email' id='email' ref={emailEl} required='required' />
 					</div>
 
 					<div className='text-center'>
-						<input className='login' placeholder='Password' type="password" id="password" ref={passwordEl} />
+						<input className='login' placeholder='Password' type="password" id="password" ref={passwordEl} required='required' />
 					</div>
 
 					<a className='text-center' href='www.google.com'> <u> Forgot Password? </u> </a>
 
+					<input className='rounded-full py-1 text-white place-self-center bg-black w-2/5 text-center hover:text-yellow-500' type='submit' text={isLogin ? "Sign in" : "Register"} />
 
-					<button className='text-white bg-black w-2/5' onClick={isLogin ? loginHandler : registerHandler}>{isLogin ? "Sign in" : "Register"}</button>
-
-					<button className='w-2/5' onClick={toggleIsLogin}> {isLogin ? "New User? Register!" : "Switch to login"} </button>
+					<button className='w-2/5 hover:text-yellow-500' onClick={toggleIsLogin}> {isLogin ? "New User? Register!" : "Switch to login"} </button>
 
 
 
@@ -121,6 +124,11 @@ export default function Login() {
 
 			</div>
 
+			<ToastContainer
+				position='top-right'
+				autoClose={2000}
+				closeOnClick
+			/>
 
 		</div>
 	);

@@ -1,16 +1,13 @@
-import React, { useEffect, useState, } from 'react';
-import { useApolloClient, gql, useMutation, useQuery, } from '@apollo/client';
+import React from 'react';
+import { gql, useMutation, useQuery, } from '@apollo/client';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../index.css';
 
 import JournalEditor from '../components/JournalEditor';
 import Spinner from '../components/Spinner/Spinner';
-import Notification from '../components/Notification';
 import PromptDisplay from '../components/PromptDisplay';
-import { debounce, initial } from 'lodash';
-import DraftjsTextEditor from '../components/DraftjsTextEditor';
-import QuillTextEditor from '../components/QuillTextEditor';
+import { debounce, } from 'lodash';
 
 const JOURNAL_ENTRY_UPLOAD_MUTATION = gql`
   mutation JournalEntryUpload($content: String!) {

@@ -24,7 +24,6 @@ export default function JournalEditor({ initialContent, onContentChange }) {
 		<div className='w-5/6 mx-auto'>
 			<Editor
 				editorClassName='border-2 overflow-y-auto bg-white px-4 sm:px-8'
-				toolbarClassName='justify-center'
 				defaultContentState={initialContent}
 				editorState={editorState}
 				onEditorStateChange={(state) => {
