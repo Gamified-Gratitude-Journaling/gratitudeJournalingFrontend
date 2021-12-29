@@ -1,5 +1,5 @@
 import React, { useState, useContext, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation, NavLink } from 'react-router-dom'
 import { useApolloClient } from '@apollo/client';
 
 import Leaderboard from './pages/Leaderboard';
@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import NavBar from './components/NavBar';
 import AuthContext from './context/auth-context';
 import Contribute from './pages/Contribute';
+import About from './pages/About';
 const Test = React.lazy(() => import('./pages/Test'));
 
 function RequireAuth({ children }) {
@@ -56,12 +57,13 @@ export default function App() {
         </div>
 
         
-        <div className="max-w-3xl mx-auto px-2  z-0" id = 'mainBodyDiv'>
+        <div className="max-w-3xl mx-auto px-2 z-0 my-10 min-h-screen" id = 'mainBodyDiv'>
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/journal" element={<RequireAuth><Journal /></RequireAuth>} />
             <Route path="/contribute" element={<RequireAuth><Contribute /></RequireAuth>} />
             <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/about" element={<About />} />
             <Route path="/profile/:username/*" element={<Profile />} />
             {process.env.NODE_ENV !== 'production' && (
               <Route path="/test" element={
@@ -74,7 +76,12 @@ export default function App() {
           </Routes>
         </div>
       
-      
+        <div className='grid bg-gray-200 h-screen-3/6 pt-4 mt-10'>
+          <div className='flex px-10 place-content-center'>
+            <NavLink to='/about'>About</NavLink>
+          </div>
+          <p className='align-self-end text-center'>© Copyright 2022</p>
+        </div>
       </AuthContext.Provider>
     </BrowserRouter>
   );

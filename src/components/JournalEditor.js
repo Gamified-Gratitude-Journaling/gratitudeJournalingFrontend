@@ -10,45 +10,47 @@ export default function JournalEditor({ initialContent, onContentChange }) {
 	if (!initialContent) { initialContent = EditorState.createEmpty() }
 	else { initialContent = EditorState.createWithContent(convertFromRaw(initialContent)) }
 	const [editorState, setEditorState] = useState(initialContent);
-	
+
 	const handleEditorChange = (state) => {
 		setEditorState(state);
 		convertContentToHTML();
-	 }
+	}
 	const convertContentToHTML = () => {
 		let currentContentAsHTML = convertToHTML(editorState.getCurrentContent());
 		EditorState.setConvertedContent(currentContentAsHTML);
 	}
 
-	return (<React.Fragment>
-		<Editor
-			editorClassName='border-2 max-w-3xl overflow-y-auto bg-white px-4 sm:px-8'
-			toolbarClassName='justify-center'
-			defaultContentState={initialContent}
-			editorState={editorState}
-			onEditorStateChange={(state) => {
-				if (onContentChange) {
-					onContentChange(JSON.stringify(convertToRaw(state.getCurrentContent()), null, 4));
-				}
-				setEditorState(state);
-			}}
-			toolbar={{
-				options: ['inline', 'blockType', 'list', 'textAlign', 'colorPicker', 'emoji', 'image', 'history'],
-				inline: { 
-					options: ['bold', 'italic', 'underline'],
-				},
-				blockType: {
-					options: ['H1', 'H2', 'Normal'],
-				},
-				list: {
-					options: ['unordered', 'ordered'],
-				},
-				
-				link: { inDropdown: true },
-				history: { inDropdown: false },
-			}}
-			
-		/>
-	</React.Fragment>);
+	return (<div className='w-screen'>
+		<div className='w-5/6 mx-auto'>
+			<Editor
+				editorClassName='border-2 overflow-y-auto bg-white px-4 sm:px-8'
+				toolbarClassName='justify-center'
+				defaultContentState={initialContent}
+				editorState={editorState}
+				onEditorStateChange={(state) => {
+					if (onContentChange) {
+						onContentChange(JSON.stringify(convertToRaw(state.getCurrentContent()), null, 4));
+					}
+					setEditorState(state);
+				}}
+				toolbar={{
+					options: ['inline', 'blockType', 'list', 'textAlign', 'colorPicker', 'emoji', 'image', 'history'],
+					inline: {
+						options: ['bold', 'italic', 'underline'],
+					},
+					blockType: {
+						options: ['H1', 'H2', 'Normal'],
+					},
+					list: {
+						options: ['unordered', 'ordered'],
+					},
+
+					link: { inDropdown: true },
+					history: { inDropdown: false },
+				}}
+
+			/>
+		</div>
+	</div>);
 }
 

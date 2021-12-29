@@ -42,7 +42,7 @@ export default function Journal() {
 	const [journalEntryUploadMutation, { loading: mutateLoading, data: mutateData }] = useMutation(JOURNAL_ENTRY_UPLOAD_MUTATION, {
 		refetchQueries: [CURRENT_ENTRY]
 	});
-	const [submitJournalMutation,] = useMutation(SUBMIT_MUTATION, {
+	const [submitJournalMutation,{loading: submitLoading, data: submitData}] = useMutation(SUBMIT_MUTATION, {
 		refetchQueries: [CURRENT_ENTRY]
 	});
 	const { loading, error, data, } = useQuery(CURRENT_ENTRY);
@@ -70,10 +70,10 @@ export default function Journal() {
 				<PromptDisplay />
 			</div>
 
-			<div class="">
+			<div class="w-full">
 				{loading ? <Spinner /> : (
-					<div className='grid place-content-center space-y-2'>
-						<div className='' id='journalEditor'>
+					<div className='grid w-full place-content-center space-y-2'>
+						<div className='w-full' id='journalEditor'>
 							<JournalEditor
 								onContentChange={debounce((content) => {
 									journalEntryUploadMutation({ variables: { content } });
@@ -82,8 +82,8 @@ export default function Journal() {
 							/>
 						</div>
 						{initialContent.localeCompare('null') !== 0 && <button className='px-2' onClick={submitJournal}>
-							{mutateLoading ? "Saving..." : (
-								mutateData ? "Submitted" : "Submit"
+							{submitLoading ? "Saving..." : (
+								submitData ? "Submitted" : "Submit"
 							)}
 						</button>}
 					</div>

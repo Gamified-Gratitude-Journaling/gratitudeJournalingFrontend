@@ -85,43 +85,42 @@ export default function Login() {
 
 	return (
 
-		<div className = 'max-h-screen min-h-screen'>
-				<div className = 'grid-cols-1 mx-auto pt-5 w-2/6 h-3/6'>
-					<img className = 'logo mx-auto' src = {logo} alt='logo' class = 'responsive'/>
-					<br/>
-				</div>
+		<div className='h-screen'>
+			<div className='h-2/6'>
+				<img class='max-h-full object-scale-down mx-auto' src={logo} alt='logo' />
+			</div>
 
-				<div className = 'grid-cols-3'>
+			<div className='grid-cols-3'>
 
-					<form className = 'form grid gap-4'>
-						<h1 className='text-center title'> Gratitude Journal</h1>
+				<form className='form grid gap-4'>
+					<h1 className='text-center title'> Gratitude Journal</h1>
 
-						{!isLogin && (<div className = 'text-center'>
-							<input className = 'login' placeholder = 'Username' type="username" id="username" ref={usernameEl} />
-						</div>)}
+					{!isLogin && (<div className='text-center'>
+						<input className='login' placeholder='Username' type="username" id="username" ref={usernameEl} />
+					</div>)}
 
-						<div className = 'text-center'>
-							<input className = 'login' placeholder = 'Email' type = 'email' id = 'email' ref = {emailEl}/>
-						</div>
+					<div className='text-center'>
+						<input className='login' placeholder='Email' type='email' id='email' ref={emailEl} />
+					</div>
 
-						<div className = 'text-center'>
-							<input className = 'login' placeholder = 'Password' type="password" id="password" ref={passwordEl} />
-						</div>
-						
-						<a className = 'text-center' href = 'www.google.com'> <u> Forgot Password? </u> </a>
-						
-						
-						<button className = 'text-white bg-black w-2/5' onClick={isLogin ? loginHandler : registerHandler}>{isLogin ? "Sign in" : "Register"}</button>
+					<div className='text-center'>
+						<input className='login' placeholder='Password' type="password" id="password" ref={passwordEl} />
+					</div>
 
-						<button className='w-2/5' onClick={toggleIsLogin}> {isLogin ? "New User? Register!" : "Switch to login" } </button>
+					<a className='text-center' href='www.google.com'> <u> Forgot Password? </u> </a>
 
-						
 
-						
-					</form>
-					
-				</div>
-				
+					<button className='text-white bg-black w-2/5' onClick={isLogin ? loginHandler : registerHandler}>{isLogin ? "Sign in" : "Register"}</button>
+
+					<button className='w-2/5' onClick={toggleIsLogin}> {isLogin ? "New User? Register!" : "Switch to login"} </button>
+
+
+
+
+				</form>
+
+			</div>
+
 
 		</div>
 	);

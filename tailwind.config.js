@@ -15,6 +15,9 @@ module.exports = {
       },
       width: {
         'inf': '1000%',
+      },
+      height: {
+        'screen-3/6': '50vh',
       }
     },
     container: {
