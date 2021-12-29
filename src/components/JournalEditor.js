@@ -4,6 +4,8 @@ import { Editor } from 'react-draft-wysiwyg';
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { convertToHTML } from 'draft-convert';
 
+
+
 export default function JournalEditor({ initialContent, onContentChange }) {
 	if (!initialContent) { initialContent = EditorState.createEmpty() }
 	else { initialContent = EditorState.createWithContent(convertFromRaw(initialContent)) }
@@ -20,7 +22,8 @@ export default function JournalEditor({ initialContent, onContentChange }) {
 
 	return (<React.Fragment>
 		<Editor
-			editorClassName="border-2 max-h-80 min-h-full overflow-auto bg-gray-100 px-4 sm:px-8"
+			editorClassName='border-2 max-w-3xl overflow-y-auto bg-white px-4 sm:px-8'
+			toolbarClassName='justify-center'
 			defaultContentState={initialContent}
 			editorState={editorState}
 			onEditorStateChange={(state) => {
