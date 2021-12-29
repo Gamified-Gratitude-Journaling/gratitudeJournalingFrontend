@@ -40,8 +40,8 @@ export default function BadgesDisplay({ totalPoints, likes, totalWords, longestS
 	]
 	return (<div className="grid sm:grid-cols-2">
 		{badges.map(badge => {
-			let ind = 0;
-			badge.levels.forEach(val => { if (badge.value > val) ind++; });
+			let ind = -1;
+			badge.levels.forEach(val => { if (badge.value >= val) ind++; });
 
 			return (<div
 				className={`cursor-pointer mx-auto rounded-md bg-${colors[ind]} my-4`}
@@ -60,7 +60,7 @@ export default function BadgesDisplay({ totalPoints, likes, totalWords, longestS
 				{
 					< Modal
 						isOpen={badge.name.localeCompare(activeBadge) === 0}
-						header={badge.name}
+						header={`${badge.name}: level ${ind}`}
 						handleClose={() => { setActiveBadge("") }}
 					>
 						{badge.description.map((text, i) => {
