@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { gql, useMutation, useQuery, } from '@apollo/client';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import '../index.css';
 
 import JournalEditor from '../components/JournalEditor';
 import Spinner from '../components/Spinner/Spinner';
 import PromptDisplay from '../components/PromptDisplay';
 import { debounce, } from 'lodash';
+import { NavLink } from 'react-router-dom';
+import authContext from '../context/auth-context';
 
 const JOURNAL_ENTRY_UPLOAD_MUTATION = gql`
   mutation JournalEntryUpload($content: String!) {
@@ -43,6 +44,7 @@ export default function Journal() {
 		refetchQueries: [CURRENT_ENTRY]
 	});
 	const { loading, error, data, } = useQuery(CURRENT_ENTRY);
+	const {username} = useContext(authContext);
 
 	let initialContent = "null";
 	if (data && data.currentEntry) { initialContent = data.currentEntry.content; }
@@ -55,7 +57,10 @@ export default function Journal() {
 		])
 		toast.promise(upload, {
 			loading: 'Saving...',
-			success: wasSubmitted ? "Entry Updated!" : "Journal Created! +10 pts",
+			success: {render(){return <div className='flex place-content-between'>
+				{wasSubmitted ? "Entry Updated!" : "Journal Created! +10 pts"}
+				<NavLink to={`/profile/${username}`}>View Profile</NavLink>
+			</div>}},
 			error: "Error! Please try again",
 		})
 	}
@@ -86,11 +91,6 @@ export default function Journal() {
 					</div>
 				)}
 			</div>
-			<ToastContainer
-				position='top-right'
-				autoClose={2000}
-				closeOnClick
-			/>
 		</div>
 	);
 }

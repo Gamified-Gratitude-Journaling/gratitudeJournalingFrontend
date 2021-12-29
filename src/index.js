@@ -8,6 +8,7 @@ import {
 } from '@apollo/client';
 import { createUploadLink } from 'apollo-upload-client';
 import { setContext } from '@apollo/client/link/context';
+import { BrowserRouter} from 'react-router-dom'
 
 import './index.css';
 import App from './App';
@@ -37,10 +38,12 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   // Allow child Components to access our ApolloClient
-  <ApolloProvider 
+  <ApolloProvider
     client={client}
   >
-    <App id='App'/>
+    <BrowserRouter>
+      <App id='App' />
+    </BrowserRouter>
   </ApolloProvider>,
   document.getElementById('root')
 );

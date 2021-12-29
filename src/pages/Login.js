@@ -1,8 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useApolloClient, gql, useMutation, useQuery, } from '@apollo/client';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import authContext from '../context/auth-context';
 import logo from './images/gratitude symbol.png';
 import '../index.css';
@@ -78,7 +77,7 @@ export default function Login() {
 	};
 
 	const handleSubmit = (event) => {
-		let promise = loginHandler, loading = 'Logging in...';
+		let promise = loginHandler;
 		if (!isLogin) promise = registerHandler;
 		toast.promise(()=>promise(event), {
 			loading: 'loading',
@@ -123,12 +122,6 @@ export default function Login() {
 				</form>
 
 			</div>
-
-			<ToastContainer
-				position='top-right'
-				autoClose={2000}
-				closeOnClick
-			/>
 
 		</div>
 	);
