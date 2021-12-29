@@ -5,14 +5,12 @@ env.user1 = {
 	email: "user1@test.com",
 	password: "llysc90-",
 	username: "kys",
-	userId: "61c5edd5333683fbb5f3358a",
 };
 
 env.user2 = {
 	email: "user2@test.com",
 	password: "llysc90-",
 	username: "user2",
-	userId: "61c5edd5333683fbb5f3358e",
 };
 
 env.qian = {
@@ -20,6 +18,18 @@ env.qian = {
 	password: "llysc90-",
 	username: "qian",
 };
+
+const createNUsers = async (n) => {
+	let users = [];
+	for (let i = 0; i<n;i++){
+		users.push(helper.createUser({
+			email: `user${i+3}@test.com`,
+			password: "test",
+			username: `user${i+3}`,
+		}));
+	}
+	return Promise.all(users);
+}
 
 const authenticate = async () => {
 	var resData = await helper.createUser(env.user1);

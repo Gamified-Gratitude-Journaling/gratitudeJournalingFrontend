@@ -11,6 +11,7 @@ module.exports = {
       colors: {
         cyan: colors.cyan,
         hoverColor: '#0088a9',
+        pageBody: '#ECEFF1',
       },
       width: {
         'inf': '1000%',

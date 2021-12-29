@@ -3,12 +3,17 @@ import { NavLink } from 'react-router-dom';
 import authContext from '../context/auth-context';
 import userImg from '../pages/images/user.png';
 
-export default function LeadingPlayer({ user, points }) {
+export default function LeadingPlayer({ user, points, place }) {
     const {username: currentUsername} = useContext(authContext);
-    return (
-        <div className={`player-score-box ${ currentUsername && currentUsername.localeCompare(user.username) === 0 && "bg-blue-100" }`}>
-            <NavLink to={`/Profile/${user.username}`}>
+    
+    const isCurrentPlayer = currentUsername && currentUsername.localeCompare(user.username) === 0;
+    console.log(isCurrentPlayer);
+
+    const userEl = (
+        <div className={`player-score-box ${ isCurrentPlayer && "bg-indigo-100" }`}>
+            <NavLink to={`/profile/${user.username}`}>
                 <ul className='player-scores'>
+                    <li><h1><b>#</b> {place}</h1></li>
                     <li>
                         <div className='_logoNav'>
                             <img src={userImg} width={37} height={39} alt=' ' />
@@ -20,4 +25,10 @@ export default function LeadingPlayer({ user, points }) {
             </NavLink>
         </div>
     )
+    if (isCurrentPlayer){
+        return (<div className='sticky bottom-0 bg-pageBody border-t-4 '>
+            {userEl}
+        </div>)
+    }
+    return userEl;
 }

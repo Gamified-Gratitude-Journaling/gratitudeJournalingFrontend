@@ -6,6 +6,7 @@ const prompt = require('./prompt');
 const point = require('./point');
 const env = require('./env');
 const social = require('./social');
+const leaderboard = require('./leaderboard');
 
 env.clientEmail = "test@test.com";
 env.clientPassword = "llysc90-";
@@ -18,11 +19,12 @@ class Test {
 }
 
 const tests = [
-	new Test('Authentication', authenticate),
-	new Test('Journals', journal),
-	new Test('Prompts', prompt),
+	//new Test('Authentication', authenticate),
+	//new Test('Journals', journal),
+	//new Test('Prompts', prompt),
 	//new Test('Points', point),
-	new Test('Social', social),
+	//new Test('Social', social),
+	new Test('Leaderboard', leaderboard),
 ];
 
 const main = async () => {
