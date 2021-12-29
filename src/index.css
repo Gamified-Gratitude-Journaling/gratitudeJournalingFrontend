@@ -70,6 +70,7 @@ li, a, p{
 
 .nav_links li{
     list-style: none;
+    
 }
 
 .nav_links li a {
@@ -113,9 +114,9 @@ li, a, p{
     }
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 800px) {
     .nav_links{
-        width: 60%;
+        width: 70%;
     }
 }
 
