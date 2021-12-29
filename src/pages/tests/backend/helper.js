@@ -5,7 +5,7 @@ const features = {
 	createUser: async (user) => {
 		return await features.queryAPI(`
 		mutation {
-			createUser (email: "${user.email}", password: "${user.password}") {
+			createUser (email: "${user.email}", password: "${user.password}", username: "${user.username}") {
 				_id
 				email
 				password

@@ -1,5 +1,6 @@
 
 import { gql, useApolloClient, useMutation, useQuery } from '@apollo/client';
+import { useEffect } from 'react';
 import LeadingPlayer from "../components/LeadingPlayer";
 import Spinner from '../components/Spinner/Spinner';
 
@@ -16,7 +17,8 @@ const LEADERBOARD_STATUS = gql`
 
 export default function MainPage() {
 	// const [journalEntryUploadMutation] = useMutation(JOURNAL_ENTRY_UPLOAD_MUTATION);
-	const { loading, error, data } = useQuery(LEADERBOARD_STATUS);
+	const { loading, error, data, refetch } = useQuery(LEADERBOARD_STATUS);
+	useEffect(refetch);
 	// //const apolloClient = useApolloClient();
 	// let calendarHeatMap = "";
 	// if (loading) {calendarHeatMap = <p>Loading...</p>}

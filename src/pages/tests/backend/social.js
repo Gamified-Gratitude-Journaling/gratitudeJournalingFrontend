@@ -9,7 +9,7 @@ const modifyFollow = async (followee, type) => {
 		}
 		const queryBody =
 			`mutation FollowEntryUpload ($content: String!) {
-			${type}Follow (followee: $content) {
+			toggleFollow (followee: $content) {
 				_id
 				followers{
 					email
@@ -32,10 +32,10 @@ const social = async () => {
 		console.log("user2 follows user1", await modifyFollow(env.user1.userId, "create"));
 		console.log("user2 unfollows user1", await modifyFollow(env.user1.userId, "delete"));*/
 		console.log("login user1", await helper.login(env.user1));
-		console.log("user1 unfollows user2", await modifyFollow(env.user2.userId, "delete"));
-		const created = await modifyFollow(env.user2.userId, "create");
+		console.log("user1 unfollows user2", await modifyFollow(env.user2.username, "delete"));
+		const created = await modifyFollow(env.user2.username, "create");
 		console.log("user1 follows user2", created);
-		console.log("created", created.data.createFollow.followers, created.data.createFollow.following);
+		console.log("created", created.data);
 		//console.log("user1 unfollows user2", await modifyFollow(env.user2.userId, "delete"));
 	} catch (err) { throw err; }
 };

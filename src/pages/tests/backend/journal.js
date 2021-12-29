@@ -64,7 +64,7 @@ const journals = async (numJournals) => {
 		console.log("user2 fetching", await fetchJournals());
 		await helper.login(env.user1);
 		console.log("user1 fetching", await fetchJournals());
-		console.log("rewriting Journal", await createJournal("Override"));
+		console.log("rewriting Journal", await createJournal("Override into at lest 10 words to get like 1 point or something"));
 		console.log("refetching", await fetchJournals());
 	} catch (err) { throw err; }
 };

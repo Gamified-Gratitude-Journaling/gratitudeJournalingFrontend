@@ -1,4 +1,5 @@
 import { useQuery, gql } from "@apollo/client";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import BadgesDisplay from '../../components/BadgesDisplay';
@@ -27,7 +28,8 @@ const FETCH_USER_QUERY = gql`
 
 export default function Badges() {
 	const {username} = useParams();
-	const { loading, error, data} = useQuery(FETCH_USER_QUERY, { variables: { username } });
+	const { loading, error, data, refetch} = useQuery(FETCH_USER_QUERY, { variables: { username } });
+	useEffect(refetch);
 
 	let totalPoints = 0, totalLikes = 0, totalWords = 0, longestStreak = 0, currentStreak = 0;
 	if (data) {

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import PointCalendar from '../../components/PointCalendar';
 import JournalCalendar from '../../components/JournalCalendar';
 import Spinner from '../../components/Spinner/Spinner';
+import { useEffect } from "react";
 
 const FETCH_USER_QUERY = gql`
   query Overview($username: String!){
@@ -23,8 +24,8 @@ const FETCH_USER_QUERY = gql`
 
 export default function Overview() {
 	const {username} = useParams();
-	const { loading, error, data} = useQuery(FETCH_USER_QUERY, { variables: { username } });
-	console.log(data);
+	const { loading, error, data, refetch} = useQuery(FETCH_USER_QUERY, { variables: { username } });
+	useEffect(refetch)
 
 	return (
 		<div className="grid grid-cols-1 sm:grid-cols-2">

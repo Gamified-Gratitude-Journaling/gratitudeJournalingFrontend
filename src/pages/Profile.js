@@ -1,7 +1,7 @@
 import { gql, useQuery, useMutation, } from '@apollo/client';
 import { CgProfile } from 'react-icons/cg';
 import { NavLink, Route, Routes, useParams, } from 'react-router-dom';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import authContext from '../context/auth-context';
 import Badges from './profile/Badges';
@@ -33,7 +33,7 @@ const links = [
 export default function Profile() {
 	const { token, username: currentUsername } = useContext(authContext);
 	let { username, '*': active } = useParams();
-	const { loading, error, data } = useQuery(ISFOLLOWING_QUERY, { variables: { followee: username } });
+	const { loading, error, data, refetch } = useQuery(ISFOLLOWING_QUERY, { variables: { followee: username } });
 	const [toggleFollowMutation] = useMutation(TOGGLE_FOLLOW_MUTATION, {
 		refetchQueries: [ISFOLLOWING_QUERY],
 		variables: { followee: username }
