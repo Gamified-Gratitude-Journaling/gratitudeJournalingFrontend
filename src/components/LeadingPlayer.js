@@ -26,7 +26,7 @@ export default function LeadingPlayer({ user, points, place }) {
         </div>
     )
     if (isCurrentPlayer){
-        return (<div className='sticky bottom-0 bg-pageBody border-t-4 '>
+        return (<div className='sticky bottom-0 '>
             {userEl}
         </div>)
     }

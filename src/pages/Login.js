@@ -85,10 +85,9 @@ export default function Login() {
 
 	return (
 
-		<div className = 'login_container'>
-			<div>
-				<div className = 'grid-cols-1 mx-auto w-25 pt-5'>
-					<img className = 'logo img-fluid img-responsive mx-auto' src = {logo} alt='logo' class = 'responsive'/>
+		<div className = 'max-h-screen min-h-screen'>
+				<div className = 'grid-cols-1 mx-auto pt-5 w-2/6 h-3/6'>
+					<img className = 'logo mx-auto' src = {logo} alt='logo' class = 'responsive'/>
 					<br/>
 				</div>
 
@@ -124,7 +123,6 @@ export default function Login() {
 				</div>
 				
 
-			</div>
 		</div>
 	);
 }

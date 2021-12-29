@@ -52,11 +52,11 @@ export default function App() {
         }}
       >
         <div className='sticky top-0 z-50'>
-          <NavBar />
+          <NavBar className='mb-6'/>
         </div>
 
         
-        <div className="max-w-3xl mx-auto px-2 mt-6 z-0 " id = 'mainBodyDiv'>
+        <div className="max-w-3xl mx-auto px-2  z-0" id = 'mainBodyDiv'>
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/journal" element={<RequireAuth><Journal /></RequireAuth>} />
