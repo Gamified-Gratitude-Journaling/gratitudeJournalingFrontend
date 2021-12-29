@@ -113,6 +113,7 @@ export default function PromptDisplay() {
 
 	return (
 		<div className="grid w-full mx-auto px-2 rounded-lg bg-white drop-shadow-lg pt-4 sm:px-10 mb-4">
+			
 			<div className=" rounded-lg mb-6 px-2">
 				<div className="flex w-full mb-4 pt-4">
 					<div className="text-3xl text-indigo-500 text-left leading-tight h-3">“</div>
@@ -123,6 +124,7 @@ export default function PromptDisplay() {
 					<div className="text-3xl text-indigo-500 text-right leading-tight h-3">”</div>
 				</div>
 			</div>
+			
 			<div className="grid grid-cols-2 border-t-2 mb-2 pt-2 px-1 sm:px-5 items-center">
 				<div
 					className='text-left cursor-pointer'
@@ -134,6 +136,7 @@ export default function PromptDisplay() {
 					<p className='text-gray-300 hover:text-yellow-400'>Contribute?</p>
 				</NavLink>
 			</div>
+
 		</div >
 	)
 }

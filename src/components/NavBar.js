@@ -17,7 +17,10 @@ export default function NavBar() {
     }
 
     const handleNavLinksToggle = () => {
-        navLinkToggle(!navLinkOpen);
+        if(window.screen.width <= 768){
+            navLinkToggle(!navLinkOpen);
+
+        }
     }
 
     const renderClass = () => {
@@ -56,9 +59,9 @@ export default function NavBar() {
                     <img src={logo} width={37} height={39} alt=' ' />
                 </NavLink>
 
-                <ul className={renderClass()}>
+                <ul className={renderClass()} onClick = {() => handleNavLinksToggle()} id = 'navBarList'>
 
-                    <li><NavLink to='/journal'><h2>Journal</h2></NavLink></li>
+                    <li><NavLink to='/journal'><h2 >Journal</h2></NavLink></li>
                     <li><NavLink to='/leaderboard'><h2>Leaderboard</h2></NavLink></li>
                     <li><NavLink to={`/profile/${username}`}>
                         <div className="flex items-center">
