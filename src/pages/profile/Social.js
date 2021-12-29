@@ -32,7 +32,6 @@ const UserList = ({ users }) => {
 export default function Social() {
 	const { username } = useParams();
 	const { loading, error, data } = useQuery(FETCH_USER_QUERY, { variables: { username } });
-	console.log(data);
 	if (loading) { return <Spinner /> }
 
 	return (

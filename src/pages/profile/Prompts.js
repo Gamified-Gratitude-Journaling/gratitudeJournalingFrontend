@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useQuery, gql } from "@apollo/client";
 import { NavLink, useParams } from "react-router-dom";
 
@@ -19,7 +19,9 @@ const FETCH_USER_QUERY = gql`
 
 export default function Prompts() {
 	const { username } = useParams();
-	const { loading, error, data: qdata} = useQuery(FETCH_USER_QUERY, { variables: { username } });
+	const { loading, error, data: qdata, refetch} = useQuery(FETCH_USER_QUERY, { variables: { username } });
+	useEffect(refetch);
+
 	let prompts = [];
 	if (qdata) { prompts = qdata.fetchUser.createdPrompts }
 

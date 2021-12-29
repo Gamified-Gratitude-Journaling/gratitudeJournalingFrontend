@@ -32,10 +32,9 @@ export default function Journal() {
 	const [journalEntryUploadMutation, { loading: mutateLoading }] = useMutation(JOURNAL_ENTRY_UPLOAD_MUTATION, {
 		refetchQueries: [CURRENT_ENTRY]
 	});
-	const { loading, error, data } = useQuery(CURRENT_ENTRY);
+	const { loading, error, data, } = useQuery(CURRENT_ENTRY);
 	let initialContent = "null";
 	if (data && data.currentEntry) { initialContent = data.currentEntry.content; }
-	console.log(data);
 
 	return (
 		<div className='pt-16'>
