@@ -18,6 +18,7 @@ env.user2 = {
 env.qian = {
 	email: "qian@gmail.com",
 	password: "llysc90-",
+	username: "qian",
 };
 
 const authenticate = async () => {
