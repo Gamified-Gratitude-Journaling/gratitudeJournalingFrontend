@@ -88,7 +88,7 @@ export default function Login() {
 
 	return (
 
-		<div className='h-screen'>
+		<div className='h-screen page'>
 			<div className='h-2/6'>
 				<img class='max-h-full object-scale-down mx-auto' src={logo} alt='logo' />
 			</div>

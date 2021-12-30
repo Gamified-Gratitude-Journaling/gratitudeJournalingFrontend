@@ -21,7 +21,7 @@ export default function MainPage() {
 	useEffect(refetch);
 
 	return (
-		<div>
+		<div className='page'>
 			<div className='text-center'>
 				<h1 style={{ fontSize: '48px' }}>Leaderboard</h1>
 			</div>

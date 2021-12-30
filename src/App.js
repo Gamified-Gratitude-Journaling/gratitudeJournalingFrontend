@@ -65,7 +65,9 @@ export default function App() {
         </div>
 
 
-        <div className="max-w-3xl mx-auto px-2 z-0 my-10 min-h-screen" id='mainBodyDiv'>
+        <div className="z-0 my-10 min-h-screen" id='mainBodyDiv'>
+        
+        {/* <div className="mainBody mx-auto px-2 z-0 my-10 min-h-screen" id='mainBodyDiv'> */}
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/journal" element={<RequireAuth><Journal /></RequireAuth>} />
@@ -84,12 +86,19 @@ export default function App() {
           </Routes>
         </div>
 
-        <div className='grid bg-gray-200 h-screen-3/6 pt-4 mt-10'>
+        {/* <div className='grid bg-gray-200 h-screen-3/6 pt-4 mt-10'>
           <div className='flex px-10 place-content-center'>
             <NavLink to='/about'>About</NavLink>
           </div>
           <p className='align-self-end text-center'>© Copyright 2022</p>
-        </div>
+        </div> */}
+
+        <footer className='text-center bg-gray-200 flex-shrink-0 sticky bottom-0'>
+            <NavLink activeClassName = 'aboutLink' to='/about'>About</NavLink>
+            
+            <p>© Copyright 2022</p>
+        </footer>
+
       </AuthContext.Provider>
       <ToastContainer
         position='top-right'

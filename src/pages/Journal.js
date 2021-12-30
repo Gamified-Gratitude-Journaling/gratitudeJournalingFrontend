@@ -67,7 +67,7 @@ export default function Journal() {
 	console.log(mutateData, mutateLoading);
 
 	return (
-		<div className='pt-16'>
+		<div className='pt-16 page'>
 			<div>
 				<PromptDisplay />
 			</div>

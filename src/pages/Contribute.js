@@ -25,7 +25,7 @@ export default function Contribute() {
 	}
 
 	return (<form>
-		<label className="grid w-full px-4">
+		<label className="grid w-full px-4 page">
 			<h1 className="text-center text-2xl md:text-4xl text-gray-400">Write a prompt for others!</h1>
 			<textarea 
 				className="rounded w-full my-3 h-screen-3/6 text-center text-lg text-gray-500 py-6 px-8" 

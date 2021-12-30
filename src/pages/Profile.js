@@ -44,7 +44,7 @@ export default function Profile() {
 	}
 
 	return (
-		<div className="grid grid-cols-1 overflow-hidden pb-40">
+		<div className="grid grid-cols-1 overflow-hidden pb-40 page">
 			<div className='flex mx-auto'>
 				<CgProfile className='w-40 h-40' />
 				<div className='place-self-center ml-5'>
