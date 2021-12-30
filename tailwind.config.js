@@ -17,6 +17,7 @@ module.exports = {
         'inf': '1000%',
       },
       height: {
+        'screen-2/6': '33vh',
         'screen-3/6': '50vh',
       }
     },

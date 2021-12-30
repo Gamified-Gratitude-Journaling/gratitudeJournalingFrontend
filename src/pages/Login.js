@@ -35,6 +35,7 @@ export default function Login() {
 	const apolloClient = useApolloClient();
 	const emailEl = React.createRef();
 	const passwordEl = React.createRef();
+	const confirmPasswordEl = React.createRef();
 	const usernameEl = React.createRef();
 	const toggleIsLogin = (event) => {
 		event.preventDefault();
@@ -45,9 +46,13 @@ export default function Login() {
 		event.preventDefault();
 		const email = emailEl.current.value;
 		const password = passwordEl.current.value;
+		const confirmPassword = confirmPasswordEl.current.value;
 		const username = usernameEl.current.value;
 
 		if (email.trim().length === 0 || password.trim().length === 0) { return; }
+		if (password.localeCompare(confirmPassword) !== 0) {
+			throw new Error("Passwords don't match");
+		}
 
 		await createUserMutation({ variables: { email, password, username } });
 		return loginHandler(event, email, password);
@@ -79,19 +84,19 @@ export default function Login() {
 	const handleSubmit = (event) => {
 		let promise = loginHandler;
 		if (!isLogin) promise = registerHandler;
-		toast.promise(()=>promise(event), {
+		toast.promise(() => promise(event), {
 			loading: 'loading',
 			success: 'Success!',
-			error: {render({data}){console.log(data); return <p>Error: {data.message}</p>}},
+			error: { render({ data }) { console.log(data); return <p>Error: {data.message}</p> } },
 		})
 	}
 
 	return (
 
-		<div className='h-screen'>
-			<div className='h-2/6'>
-				<img class='max-h-full object-scale-down mx-auto' src={logo} alt='logo' />
-			</div>
+		<div className='min-h-screen'>
+				<div className='h-screen-2/6'>
+					<img class='max-h-full object-scale-down mx-auto' src={logo} alt='logo' />
+				</div>
 
 			<div className='grid-cols-3'>
 
@@ -109,6 +114,10 @@ export default function Login() {
 					<div className='text-center'>
 						<input className='login' placeholder='Password' type="password" id="password" ref={passwordEl} required='required' />
 					</div>
+
+					{!isLogin && (<div className='text-center'>
+						<input className='login' placeholder='Confirm password' type="password" id="password" ref={confirmPasswordEl} required='required' />
+					</div>)}
 
 					<a className='text-center' href='www.google.com'> <u> Forgot Password? </u> </a>
 

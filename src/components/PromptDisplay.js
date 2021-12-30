@@ -37,18 +37,22 @@ const RandomPromptDisplay = () => {
 	let { loading, error, data, refetch } = useQuery(FETCH_PROMPT);
 	const [likePromptMutation] = useMutation(LIKE_PROMPT);
 	const [isLiked, setIsLiked] = useState(false);
-	useEffect(() => { if (data) setIsLiked(data.liked) }, [data]);
+	const [likesDelta, setLikesDelta] = useState(0);
+	useEffect(()=>setLikesDelta(0),[]);
+	useEffect(() => { if (data) {
+		setIsLiked(data.liked) 
+	}}, [data]);
 
-	console.log(loading);
 	if (loading) { return <Spinner /> }
 	data = data.prompt;
 
 	const like = () => {
 		likePromptMutation({ variables: { prompt: data.prompt._id } });
+		setLikesDelta(isLiked ? likesDelta-1: likesDelta+1);
 		setIsLiked(!isLiked);
 	}
 
-	const getPrompt = () => { refetch(); }
+	const getPrompt = () => { setLikesDelta(0); refetch(); }
 
 	return (
 		<div className="grid w-full mx-auto px-2 rounded-lg bg-white drop-shadow-lg pt-4 sm:px-10 mb-4">
@@ -74,12 +78,12 @@ const RandomPromptDisplay = () => {
 
 			<div className="grid grid-cols-3 border-t-2 mb-2 pt-2 px-2 sm:px-5">
 				<div className='flex md:pl-10 space-x-1 justify-self-start'>
-					<p>{data.prompt.likes}</p>
 					{data.prompt.user.username !== username &&
-						<div onClick={like} className='h-4 w-4 cursor-pointer'>
+						<div onClick={like} className='grid place-content-center cursor-pointer'>
 							<AiOutlineLike color={isLiked ? "gold" : "gray"} />
 						</div>
 					}
+					<p>{data.prompt.likes + likesDelta}</p>
 					{/*<div onClick={like.bind(this,false)} className='h-4 w-4 mr-4'><AiOutlineDislike color={data.liked && "SteelBlue"}/></div>*/}
 
 
