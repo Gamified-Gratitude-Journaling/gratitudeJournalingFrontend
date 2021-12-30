@@ -15,6 +15,7 @@ const FETCH_PROMPT = gql(`
 				user {
 					username
 				}
+				likes
 			}	
 			liked
 		}
@@ -38,6 +39,7 @@ const RandomPromptDisplay = () => {
 	const [isLiked, setIsLiked] = useState(false);
 	useEffect(() => { if (data) setIsLiked(data.liked) }, [data]);
 
+	console.log(loading);
 	if (loading) { return <Spinner /> }
 	data = data.prompt;
 
@@ -51,8 +53,7 @@ const RandomPromptDisplay = () => {
 	return (
 		<div className="grid w-full mx-auto px-2 rounded-lg bg-white drop-shadow-lg pt-4 sm:px-10 mb-4">
 			<div className="rounded-lg mb-6 px-2">
-				<div className='grid grid-cols-2'>
-					<NavLink className='justify-self-end' to={`/profile/${data.prompt.user.username}`}>
+					<NavLink to={`/profile/${data.prompt.user.username}`}>
 						<div className='flex place-content-center grid-cols-2'>
 							<div className="grid place-content-center overflow-hidden rounded-full w-20 h-20 shadow-lg -mt-10">
 								<CgProfile className='w-12 h-12' />
@@ -63,10 +64,6 @@ const RandomPromptDisplay = () => {
 							</div>
 						</div>
 					</NavLink>
-					<NavLink to="/Contribute" className='justify-self-end' >
-						<p className='text-gray-300 hover:text-yellow-400'>Contribute?</p>
-					</NavLink>
-				</div>
 				<div className="flex place-content-center w-full mb-4 pt-4">
 					<div className="text-3xl text-indigo-500 text-left h-3 -mt-2">“</div>
 					<p className="text-lg text-gray-600 text-center px-1 mx-1">{data.prompt.content}</p>
@@ -75,8 +72,9 @@ const RandomPromptDisplay = () => {
 
 			</div>
 
-			<div className="grid grid-cols-2 border-t-2 mb-2 pt-2 px-2 sm:px-5">
-				<div className=' md:pl-10'>
+			<div className="grid grid-cols-3 border-t-2 mb-2 pt-2 px-2 sm:px-5">
+				<div className='flex md:pl-10 space-x-1 justify-self-start'>
+					<p>{data.prompt.likes}</p>
 					{data.prompt.user.username !== username &&
 						<div onClick={like} className='h-4 w-4 cursor-pointer'>
 							<AiOutlineLike color={isLiked ? "gold" : "gray"} />
@@ -86,6 +84,9 @@ const RandomPromptDisplay = () => {
 
 
 				</div>
+					<NavLink to="/Contribute" className='justify-self-center' >
+						<p className='text-gray-300 hover:text-yellow-400'>Contribute?</p>
+					</NavLink>
 
 				<div
 					className='flex place-content-end cursor-pointer'
