@@ -93,7 +93,7 @@ export default function App() {
       </AuthContext.Provider>
       <ToastContainer
         position='top-right'
-        autoClose={2000}
+        autoClose={3000}
         closeOnClick
       />
     </ErrorBoundary>

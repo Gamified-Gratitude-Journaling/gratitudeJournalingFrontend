@@ -62,9 +62,9 @@ export default function Journal() {
 				<NavLink to={`/profile/${username}`}>View Profile</NavLink>
 			</div>}},
 			error: "Error! Please try again",
+			autoClose: 5000,
 		})
 	}
-	console.log(mutateData, mutateLoading);
 
 	return (
 		<div className='pt-16'>
