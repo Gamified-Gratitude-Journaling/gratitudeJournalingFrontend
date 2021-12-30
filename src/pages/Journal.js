@@ -58,7 +58,7 @@ export default function Journal() {
 		toast.promise(upload, {
 			loading: 'Saving...',
 			success: {render(){return <div className='flex place-content-between'>
-				{wasSubmitted ? "Entry Updated!" : "Journal Created! +10 pts"}
+				{wasSubmitted ? "Entry Updated!" : (<div><p>Journal Created!</p><p>+10 pts</p></div>)}
 				<NavLink to={`/profile/${username}`}>View Profile</NavLink>
 			</div>}},
 			error: "Error! Please try again",
