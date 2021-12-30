@@ -55,7 +55,7 @@ export default function NavBar() {
             <nav className='navBar'>
 
 
-                <NavLink to='#' className="._logoNav">
+                <NavLink to='/journal' className="._logoNav">
                     <img src={logo} width={37} height={39} alt=' ' />
                 </NavLink>
 
