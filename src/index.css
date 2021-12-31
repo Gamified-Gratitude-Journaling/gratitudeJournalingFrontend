@@ -106,12 +106,18 @@ li, a, p{
     margin: 2rem;
 }
 
+.aboutPage{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
 /* Break points */
 
 @media sreen and (max-width: 874px) {
     .logo{
         align-items: center;
     }
+    
+    
 }
 
 @media screen and (max-width: 800px) {
@@ -124,7 +130,7 @@ li, a, p{
     body{
         overflow-x: hidden;
     }
-
+    
     .nav_links{
        position: absolute;
        right: 0px;
@@ -169,6 +175,10 @@ body {
     
 }
 
+.aboutText{
+    font-size: 22px;
+}
+
 .textBox_deactive{
     opacity: 0;
     transform: translate(-100%);
@@ -193,6 +203,6 @@ body {
 
 .page:not(.aboutLink){
     max-width: 48rem;
-    margin: auto auto;
+    margin: 2.5rem auto;
     padding: auto 2px;
 }

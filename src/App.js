@@ -65,7 +65,7 @@ export default function App() {
         </div>
 
 
-        <div className="z-0 my-10 min-h-screen" id='mainBodyDiv'>
+        <div className="z-0 min-h-screen" id='mainBodyDiv'>
         
         {/* <div className="mainBody mx-auto px-2 z-0 my-10 min-h-screen" id='mainBodyDiv'> */}
           <Routes>
@@ -93,8 +93,8 @@ export default function App() {
           <p className='align-self-end text-center'>© Copyright 2022</p>
         </div> */}
 
-        <footer className='text-center bg-gray-200 flex-shrink-0 sticky bottom-0'>
-            <NavLink activeClassName = 'aboutLink' to='/about'>About</NavLink>
+        <footer className='text-center bg-gray-200 py-2 w-screen fixed bottom-0'>
+            <NavLink to='/about'>About</NavLink>
             
             <p>© Copyright 2022</p>
         </footer>
