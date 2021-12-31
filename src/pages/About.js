@@ -114,7 +114,7 @@ export default function About() {
 			</div>
 
 			<div  className = 'h-full bg-yellow-500 p-5' data-AOS='fade-up' data-AOS-duration='2000'>
-				<p className = 'font-semibold text-center'>After 4 weeks</p>
+				<p className = 'title font-semibold text-center'>After 4 weeks</p>
 
 				<div className='aboutPage mt-5'>
 					<p className='aboutText p-5'>
