@@ -124,6 +124,10 @@ li, a, p{
     .nav_links{
         width: 70%;
     }
+
+    .aboutText{
+        font-size: 10px;
+    }
 }
 
 @media screen and (max-width: 768px) {
