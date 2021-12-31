@@ -4,6 +4,7 @@ import '../index.css';
 import gamePad from '../pages/images/gamePad.png';
 import tasks from '../pages/images/tasks.png';
 import interview from '../pages/images/interview.png';
+import logo from '../pages/images/gratitude symbol.png';
 
 export default function About() {
 	// return (<div className="grid space-y-2 px-10 text-justify">
@@ -43,13 +44,13 @@ export default function About() {
 
 		<div className = 'page aboutLink'>
 			<div className='h-screen bg-blue-400 flex justify-center items-center'>
-				<p className='font-semibold title' data-AOS='zoom-in'>Gratitude Journal</p>
+				<p className='font-semibold title' data-AOS='zoom-in'>Gratitude Journal</p>	
 			</div>
 
 			<div className = 'h-full bg-red-200 p-5' data-AOS='fade-up' data-AOS-duration='2000'>
 				<p className = 'font-semibold title text-center'>About the project</p>
 
-				<div className='aboutPage mt-5'>
+				<div className='aboutPage'>
 					<p className='aboutText pt-5'>
 						Hi! I'm Ray Wang! For my Capstone project, I'm researching how adding game elements to a digital gratitude journaling application impacts mental
 						well-being and engagement!
@@ -75,8 +76,8 @@ export default function About() {
 			<div className = 'h-full bg-yellow-200 p-5' data-AOS='fade-up' data-AOS-duration='2000'>
 				<p className = 'font-semibold title text-center'> Your Task</p>
 				
-				<div className = 'aboutPage mt-5'>
-					<p className='aboutText p-5'>
+				<div className = 'aboutPage'>
+					<p className='aboutText pt-5'>
 						Make sure you register an account with your school email address!
 
 						<br/>
