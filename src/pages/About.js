@@ -8,7 +8,7 @@ export default function About() {
 		</p>
 		<h1 className="text-center">Your task</h1>
 		<p>
-			If you haven't already, make sure to register with the email your school email.
+			If you haven't already, make sure to register with your school email.
 			Over the next 4 weeks, I would like you to use this app at least once every other day.
 		</p>
 		<p>
