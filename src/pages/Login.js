@@ -85,7 +85,7 @@ export default function Login() {
 		let promise = loginHandler;
 		if (!isLogin) promise = registerHandler;
 		toast.promise(() => promise(event), {
-			loading: 'loading',
+			pending: 'loading',
 			success: 'Success!',
 			error: { render({ data }) { console.log(data); return <p>Error: {data.message}</p> } },
 		})

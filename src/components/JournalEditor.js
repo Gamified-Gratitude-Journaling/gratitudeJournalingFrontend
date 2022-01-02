@@ -21,7 +21,7 @@ export default function JournalEditor({ initialContent, onContentChange }) {
 	}
 
 	return (<div className='w-screen'>
-		<div className='sm:w-3/6 mx-auto'>
+		<div className='w-3/6 mx-auto'>
 			<Editor
 				editorClassName='border-2 overflow-y-auto bg-white px-4 sm:px-8'
 				defaultContentState={initialContent}

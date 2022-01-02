@@ -56,14 +56,13 @@ export default function Journal() {
 			submitJournalMutation(),
 		])
 		toast.promise(upload, {
-			loading: 'Saving...',
+			pending: 'Saving...',
 			success: {render(){return <div className='flex place-content-between'>
 				{wasSubmitted ? "Entry Updated!" : (<div><p>Journal Created!</p><p>+10 pts</p></div>)}
 				<NavLink to={`/profile/${username}`}>View Profile</NavLink>
 			</div>}},
 			error: "Error! Please try again",
-			autoClose: 5000,
-		})
+		},{autoClose: 10000})
 	}
 
 	return (
