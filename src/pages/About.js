@@ -43,7 +43,7 @@ export default function About() {
 		
 
 		<div className = 'page aboutLink'>
-			<div className='h-screen bg-blue-400 flex justify-center items-center'>
+			<div className='h-screen bg-blue-400 flex justify-center items-center' data-AOS='fade-up' data-AOS-duration='2000'>
 				<p className='font-semibold title' data-AOS='zoom-in'>Gratitude Journal</p>	
 			</div>
 
@@ -113,7 +113,7 @@ export default function About() {
 				
 			</div>
 
-			<div  className = 'h-full bg-yellow-500 p-5' data-AOS='fade-up' data-AOS-duration='2000'>
+			<div  className = 'h-full bg-green-300 p-5' data-AOS='fade-up' data-AOS-duration='2000'>
 				<p className = 'title font-semibold text-center'>After 4 weeks</p>
 
 				<div className='aboutPage mt-5'>
@@ -122,7 +122,7 @@ export default function About() {
 						<br/>
 						<br/>
 						Additionally, I'd like to interview 4 random participants. The interview will take about 30 to 45 minutes each. 
-						TO reiterate the informed consent document, your participation in this interview and/or in this project is completely optional
+						To reiterate the informed consent document, your participation in this interview and/or in this project is completely optional
 					</p>
 					<img className = 'mx-auto p-5'src={interview}/>
 				</div>
