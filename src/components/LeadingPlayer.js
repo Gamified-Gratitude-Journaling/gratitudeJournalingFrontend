@@ -7,7 +7,6 @@ export default function LeadingPlayer({ user, points, place }) {
     const {username: currentUsername} = useContext(authContext);
     
     const isCurrentPlayer = currentUsername && currentUsername.localeCompare(user.username) === 0;
-    console.log(isCurrentPlayer);
 
     const userEl = (
         <div className={`player-score-box ${ isCurrentPlayer && "bg-indigo-100" }`}>
