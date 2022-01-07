@@ -19,14 +19,14 @@ export default function BadgesDisplay({ totalPoints, likes, totalWords, longestS
 		{
 			name: "Inspirer",
 			icon: HiLightBulb,
-			levels: [0, 10, 50, 100, 500, 1000],
+			levels: [0, 1, 10, 100, 500, 1000],
 			value: likes,
 			description: ["Awarded for total likes on contributed prompts", `Total likes: ${likes}`],
 		},
 		{
 			name: "Journalist",
 			icon: RiBookletFill,
-			levels: [0, 50, 100, 200, 400, 1000],
+			levels: [0, 10, 50, 100, 1000, 5000],
 			value: totalWords,
 			description: ["Awarded for total words written in journals", `Words: ${totalWords}`],
 		},
