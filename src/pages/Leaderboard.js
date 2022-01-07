@@ -18,7 +18,7 @@ const LEADERBOARD_STATUS = gql`
 export default function MainPage() {
 	// const [journalEntryUploadMutation] = useMutation(JOURNAL_ENTRY_UPLOAD_MUTATION);
 	const { loading, error, data, refetch } = useQuery(LEADERBOARD_STATUS);
-	useEffect(refetch);
+	useEffect(refetch,[]);
 
 	return (
 		<div>

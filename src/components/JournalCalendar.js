@@ -10,7 +10,7 @@ export default function JournalCalendar ({ entries, rows, cols }) {
 	}
 	entries.forEach((e) => {
 		const date = (new Date(e.createdAt).setHours(0, 0, 0, 0));
-		elements[`${date}`] = e.words;
+		elements[`${date}`] += e.words;
 	});
 	return <Calendar
 		elements={
