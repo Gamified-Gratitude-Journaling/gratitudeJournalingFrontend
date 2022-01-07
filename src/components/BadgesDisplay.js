@@ -42,6 +42,8 @@ export default function BadgesDisplay({ totalPoints, likes, totalWords, longestS
 		{badges.map(badge => {
 			let ind = -1;
 			badge.levels.forEach(val => { if (badge.value >= val) ind++; });
+			let levelText=`level ${ind}`;
+			if (ind===5) levelText='Max level';
 
 			return (<div
 				className={`cursor-pointer mx-auto rounded-md bg-${colors[ind]} my-4`}
@@ -60,7 +62,7 @@ export default function BadgesDisplay({ totalPoints, likes, totalWords, longestS
 				{
 					< Modal
 						isOpen={badge.name.localeCompare(activeBadge) === 0}
-						header={`${badge.name}: level ${ind}`}
+						header={`${badge.name}: ${levelText}`}
 						handleClose={() => { setActiveBadge("") }}
 					>
 						{badge.description.map((text, i) => {
