@@ -5,6 +5,7 @@ export default React.createContext({
 	userId: null,
 	email: null,
 	username: null,
-	login: ( token, userId, tokenExpiration, email, username) => {},
+	isTreatment: false,
+	login: ( token, userId, tokenExpiration, email, username, isTreatment) => {},
 	logout: () => {}
 });

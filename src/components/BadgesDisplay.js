@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { RiBookletFill } from 'react-icons/ri';
 import { AiFillFire } from 'react-icons/ai';
 import { CgPokemon } from 'react-icons/cg';
 import {HiLightBulb} from 'react-icons/hi'
 import Modal from './Modal';
+import authContext from '../context/auth-context';
 
 const colors = ["gray-300", "blue-300", "green-300", "red-300", "purple-300", "yellow-400"]
 export default function BadgesDisplay({ totalPoints, likes, totalWords, longestStreak, currentStreak }) {
 	const [activeBadge, setActiveBadge] = useState("");
+	const {isTreatment} = useContext(authContext);
 	const badges = [
 		{
 			name: "Collector",
@@ -43,6 +45,7 @@ export default function BadgesDisplay({ totalPoints, likes, totalWords, longestS
 			let ind = -1;
 			badge.levels.forEach(val => { if (badge.value >= val) ind++; });
 			let levelText=`level ${ind}`;
+			if (isTreatment) ind = 5;
 			if (ind===5) levelText='Max level';
 
 			return (<div

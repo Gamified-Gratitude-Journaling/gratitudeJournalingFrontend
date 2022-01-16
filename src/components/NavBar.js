@@ -7,7 +7,7 @@ import authContext from "../context/auth-context";
 
 
 export default function NavBar() {
-    const { token, username } = useContext(authContext);
+    const { token, username, isTreatment } = useContext(authContext);
     const [navLinkOpen, navLinkToggle] = useState(false);
     const location = useLocation();
 
@@ -62,7 +62,7 @@ export default function NavBar() {
                 <ul className={renderClass()} onClick = {() => handleNavLinksToggle()} id = 'navBarList'>
 
                     <li><NavLink to='/journal'><h2 >Journal</h2></NavLink></li>
-                    <li><NavLink to='/leaderboard'><h2>Leaderboard</h2></NavLink></li>
+                    <li><NavLink to={isTreatment ? "/users" : "/leaderboard"}><h2>{isTreatment ? "Users": "Leaderboard"}</h2></NavLink></li>
                     <li><NavLink to={`/profile/${username}`}>
                         <div className="flex items-center">
                             <h2 >Profile</h2>

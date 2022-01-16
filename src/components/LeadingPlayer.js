@@ -4,7 +4,7 @@ import authContext from '../context/auth-context';
 import userImg from '../pages/images/user.png';
 
 export default function LeadingPlayer({ user, points, place }) {
-    const {username: currentUsername} = useContext(authContext);
+    const {username: currentUsername, isTreatment} = useContext(authContext);
     
     const isCurrentPlayer = currentUsername && currentUsername.localeCompare(user.username) === 0;
 
@@ -19,7 +19,7 @@ export default function LeadingPlayer({ user, points, place }) {
                             <p className='p-2'> {user.username} </p>
                         </div>
                     </li>
-                    <li><p>{points} Points</p></li>
+                    {!isTreatment && <li><p>{points} Points</p></li>}
                 </ul>
             </NavLink>
         </div>

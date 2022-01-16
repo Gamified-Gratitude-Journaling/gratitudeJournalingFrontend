@@ -25,6 +25,28 @@ const LOGIN_QUERY = gql`
 	}
 `;
 
+const treatmentEmails = [
+	"2022157@appleby.on.ca",
+	"2024178@appleby.on.ca",
+	"2023008@appleby.on.ca",
+	"2023026@appleby.on.ca",
+	"2025137@appleby.on.ca",
+	"2025073@appleby.on.ca",
+	"2022172@appleby.on.ca",
+	"2022079@appleby.on.ca",
+	"2024184@appleby.on.ca",
+	"2025165@appleby.on.ca",
+	"2024070@appleby.on.ca",
+	"2024009@appleby.on.ca",
+	"2024032@appleby.on.ca",
+];
+
+const isTreatment = (email) => {
+	let res = false;
+	treatmentEmails.forEach(treat => { if (email.localeCompare(treat) === 0) res = true; });
+	return res;
+}
+
 export default function Login() {
 	const context = useContext(authContext);
 	const navigate = useNavigate();
@@ -76,6 +98,7 @@ export default function Login() {
 				data.login.tokenExpiration,
 				email,
 				data.login.username,
+				isTreatment(email),
 			);
 			navigate(from, { replace: true });
 		}
@@ -94,9 +117,9 @@ export default function Login() {
 	return (
 
 		<div className='min-h-screen'>
-				<div className='h-screen-2/6'>
-					<img class='max-h-full object-scale-down mx-auto' src={logo} alt='logo' />
-				</div>
+			<div className='h-screen-2/6'>
+				<img class='max-h-full object-scale-down mx-auto' src={logo} alt='logo' />
+			</div>
 
 			<div className='grid-cols-3'>
 

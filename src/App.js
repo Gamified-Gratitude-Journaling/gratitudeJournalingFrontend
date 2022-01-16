@@ -31,11 +31,12 @@ export default function App() {
   const [userId, setUserId] = useState(null);
   const [email, setEmail] = useState(null);
   const [username, setUsername] = useState(null);
+  const [isTreatment, setIsTreatment] = useState(false);
   const [forceRerender, setForceRerender] = useState(false);
   const client = useApolloClient();
 
-  const login = (token, userId, tokenExpiration, email, username) => {
-    setToken(token); setUserId(userId); setEmail(email); setUsername(username);
+  const login = (token, userId, tokenExpiration, email, username, isTreatment) => {
+    setToken(token); setUserId(userId); setEmail(email); setUsername(username); setIsTreatment(isTreatment);
     sessionStorage.setItem('token', token); //still needed for apollo client
   }
 
@@ -56,6 +57,7 @@ export default function App() {
           userId: userId,
           email: email,
           username: username,
+          isTreatment: isTreatment,
           login: login,
           logout: logout,
         }}
@@ -71,6 +73,7 @@ export default function App() {
             <Route path="/journal" element={<RequireAuth><Journal /></RequireAuth>} />
             <Route path="/contribute" element={<RequireAuth><Contribute /></RequireAuth>} />
             <Route path="/leaderboard" element={<Leaderboard />} />
+            <Route path="/users" element={<Leaderboard />} />
             <Route path="/about" element={<About />} />
             <Route path="/profile/:username/*" element={<Profile />} />
             {process.env.NODE_ENV !== 'production' && (
