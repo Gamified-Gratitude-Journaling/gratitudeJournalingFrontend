@@ -4,15 +4,15 @@ import authContext from '../context/auth-context';
 import userImg from '../pages/images/user.png';
 
 export default function LeadingPlayer({ user, points, place }) {
-    const {username: currentUsername, isTreatment} = useContext(authContext);
-    
+    const { username: currentUsername, isTreatment } = useContext(authContext);
+
     const isCurrentPlayer = currentUsername && currentUsername.localeCompare(user.username) === 0;
 
     const userEl = (
-        <div className={`player-score-box ${ isCurrentPlayer && "bg-indigo-100" }`}>
+        <div className={`player-score-box ${isCurrentPlayer && "bg-indigo-100"}`}>
             <NavLink to={`/profile/${user.username}`}>
                 <ul className='player-scores'>
-                    <li><h1><b>#</b> {place}</h1></li>
+                    {!isTreatment && <li><h1><b>#</b> {place}</h1></li>}
                     <li>
                         <div className='_logoNav'>
                             <img src={userImg} width={37} height={39} alt=' ' />
@@ -24,7 +24,7 @@ export default function LeadingPlayer({ user, points, place }) {
             </NavLink>
         </div>
     )
-    if (isCurrentPlayer){
+    if (isCurrentPlayer) {
         return (<div className='sticky bottom-0 '>
             {userEl}
         </div>)

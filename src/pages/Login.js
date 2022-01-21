@@ -39,6 +39,7 @@ const treatmentEmails = [
 	"2024070@appleby.on.ca",
 	"2024009@appleby.on.ca",
 	"2024032@appleby.on.ca",
+	//"raywang999@gmail.com",
 ];
 
 const isTreatment = (email) => {

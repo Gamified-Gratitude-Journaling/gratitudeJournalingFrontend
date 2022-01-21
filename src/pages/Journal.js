@@ -44,7 +44,7 @@ export default function Journal() {
 		refetchQueries: [CURRENT_ENTRY]
 	});
 	const { loading, error, data, } = useQuery(CURRENT_ENTRY);
-	const {username} = useContext(authContext);
+	const {username, isTreatment} = useContext(authContext);
 
 	let initialContent = "null";
 	if (data && data.currentEntry) { initialContent = data.currentEntry.content; }
@@ -58,7 +58,10 @@ export default function Journal() {
 		toast.promise(upload, {
 			pending: 'Saving...',
 			success: {render(){return <div className='flex place-content-between'>
-				{wasSubmitted ? "Entry Updated!" : (<div><p>Journal Created!</p><p>+10 pts</p></div>)}
+				{wasSubmitted ? "Entry Updated!" : (<div>
+					<p>Journal Created!</p>
+					{!isTreatment && <p>+10 pts</p>}
+				</div>)}
 				<NavLink to={`/profile/${username}`}>View Profile</NavLink>
 			</div>}},
 			error: "Error! Please try again",
